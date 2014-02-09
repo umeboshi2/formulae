@@ -1,3 +1,4 @@
+{% load_yaml as rawmap %}
 Debian:
   tools:
     bzip:
@@ -8,3 +9,4 @@ Debian:
         - rar
         - unrar
         - unrar-free
+{% endload %}
