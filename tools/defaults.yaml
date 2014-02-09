@@ -1,0 +1,10 @@
+Debian:
+  tools:
+    bzip:
+      pkgs:
+        - bzip2
+    rar:
+      pkgs:
+        - rar
+        - unrar
+        - unrar-free
