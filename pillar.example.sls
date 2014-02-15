@@ -1,9 +1,4 @@
 tools:
-  lookup:
-    foo: False
-    bar: 'nofoo'
-    fo:
-      - onlybar
   manage:
     - name: bzip
     - name: colordiff
