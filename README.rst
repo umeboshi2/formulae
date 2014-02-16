@@ -32,7 +32,7 @@ Available states
 ``tftp``
 ------------
 
-\#TODO
+Install and start tftd
 
 Additional resources
 ====================

@@ -8,7 +8,9 @@ Debian:
 {% else %}
   root: /srv/tftp/
 {% endif %}
-  servicename: tftpd-hpa
+  service:
+    name: tftpd-hpa
+    enable: True
   daemon: True
 Redhat:
   pkgs:

@@ -13,5 +13,6 @@ tftp:
 {% else %}
   service:
     - running
-    - name: {{ datamap['servicename'] }}
+    - name: {{ datamap['service']['name'] }}
+    - enable: {{ datamap['service']['enable'] }}
 {% endif %}
