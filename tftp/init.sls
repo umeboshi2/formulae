@@ -15,4 +15,6 @@ tftp:
     - running
     - name: {{ datamap['service']['name'] }}
     - enable: {{ datamap['service']['enable'] }}
+    - require:
+      - pkg: tftp
 {% endif %}

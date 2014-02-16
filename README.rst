@@ -32,7 +32,7 @@ Available states
 ``tftp``
 ------------
 
-Install and start tftd
+Install and start tftpd
 
 Additional resources
 ====================
