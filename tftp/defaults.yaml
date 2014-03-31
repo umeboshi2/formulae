@@ -4,9 +4,9 @@ Debian:
     - tftpd-hpa
     - syslinux
 {% if salt['grains.get']('os') == 'Ubuntu' %}
-  root: /var/lib/tftpboot/
+  root: /var/lib/tftpboot
 {% else %}
-  root: /srv/tftp/
+  root: /srv/tftp
 {% endif %}
   service:
     name: tftpd-hpa
