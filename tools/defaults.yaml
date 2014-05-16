@@ -9,4 +9,14 @@ Debian:
         - rar
         - unrar
         - unrar-free
+RedHat:
+  tools:
+    bzip:
+      pkgs:
+        - bzip2
+    rar:
+      pkgs: [] {# TODO need extra repo #}
+    sqlite3:
+      pkgs:
+        - sqlite
 {% endload %}
