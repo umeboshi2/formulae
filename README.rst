@@ -58,12 +58,12 @@ Salt Compatibility
 
 Tested with:
 
-* 2014.1.3
+* 2014.1.4
 
 OS Compatibility
 ================
 
 Tested with:
 
-* GNU/ Linux Debian Squeeze 6.0.8, Wheezy 7.5
-* CentOS 6.5
+* GNU/ Linux Debian Squeeze 6.0.8, Wheezy
+* CentOS 6
