@@ -17,7 +17,7 @@ aptrepo_{{ r.name }}:
 {% endfor %}
 
 {% if datamap.remove_popularitycontest|default(False) %}
-debian_pkg_popularity-contest:
+debian_pkg_popularity_contest:
   pkg:
     - name: popularity-contest
     - purged
