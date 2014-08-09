@@ -3,14 +3,13 @@ Debian:
   pkgs:
     - tftpd-hpa
     - syslinux
-{% if salt['grains.get']('os') == 'Ubuntu' %}
+  {% if salt['grains.get']('os') == 'Ubuntu' %}
   root: /var/lib/tftpboot
-{% else %}
+  {% else %}
   root: /srv/tftp
-{% endif %}
+  {% endif %}
   service:
     name: tftpd-hpa
-    enable: True
   daemon: True
 Redhat:
   pkgs:
