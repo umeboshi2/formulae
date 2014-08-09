@@ -65,5 +65,5 @@ OS Compatibility
 
 Tested with:
 
-* GNU/ Linux Debian Squeeze 6.0.8, Wheezy
+* GNU/ Linux Debian Squeeze, Wheezy
 * CentOS 6
