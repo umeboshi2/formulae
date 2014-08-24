@@ -11,7 +11,7 @@ Debian:
   service:
     name: tftpd-hpa
   daemon: True
-Redhat:
+RedHat:
   pkgs:
     - tftp-server
     - syslinux

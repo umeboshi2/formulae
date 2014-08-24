@@ -8,7 +8,7 @@ tftp:
     - installed
     - pkgs: {{ datamap.pkgs }}
 {% if datamap.daemon == False %}
-  {# TODO: xinetd config for Redhat family, see https://github.com/theforeman/puppet-tftp/blob/master/manifests/config.pp #}
+  {# TODO: xinetd config for RedHat family, see https://github.com/theforeman/puppet-tftp/blob/master/manifests/config.pp #}
 {% else %}
   service:
     - running
