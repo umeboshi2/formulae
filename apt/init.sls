@@ -3,6 +3,9 @@
 {% from "apt/defaults.yaml" import rawmap with context %}
 {% set datamap = salt['grains.filter_by'](rawmap, merge=salt['pillar.get']('apt:lookup')) %}
 
+include: {{ datamap.sls_include|default([]) }}
+extend: {{ datamap.sls_extend|default({}) }}
+
 {% for r in salt['pillar.get']('apt:repos', []) %}
 aptrepo_{{ r.name }}:
   pkgrepo:
@@ -11,7 +14,7 @@ aptrepo_{{ r.name }}:
   {% if not r.globalfile|default(False) %}
     - file: {{ datamap.sources_dir|default('/etc/apt/sources.list.d') }}/{{ r.name }}.list
   {% endif %}
-  {% if r.keyuri is defined %}
+  {% if 'keyuri' in r %}
     - key_url: {{ r.keyuri }}
   {% endif %}
 {% endfor %}
@@ -23,7 +26,7 @@ debian_pkg_popularity_contest:
     - purged
 {% endif %}
 
-{% for k, v in salt['pillar.get']('apt:configs', {}).items() %}
+{% for k, v in salt['pillar.get']('apt:configs', {})|dictsort %}
 aptconf_{{ k }}:
   file:
     - managed
@@ -34,7 +37,7 @@ aptconf_{{ k }}:
     - contents_pillar: apt:configs:{{ k }}:content
 {% endfor %}
 
-{% for k, v in salt['pillar.get']('apt:preferences', {}).items() %}
+{% for k, v in salt['pillar.get']('apt:preferences', {})|dictsort %}
 aptpref_{{ k }}:
   file:
     - managed
