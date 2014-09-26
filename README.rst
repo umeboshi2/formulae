@@ -67,3 +67,4 @@ Tested with:
 
 * GNU/ Linux Debian Squeeze, Wheezy
 * CentOS 6
+* CentOS 7

@@ -19,4 +19,12 @@ RedHat:
     sqlite3:
       pkgs:
         - sqlite
+    iptraf:
+  {% if salt['grains.get']('osmajorrelease', [0])[0] >= 7 %}
+      pkgs:
+        - iptraf-ng
+  {% else %}
+      pkgs:
+        - iptraf
+  {% endif %}
 {% endload %}
