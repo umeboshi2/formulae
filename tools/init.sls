@@ -3,13 +3,14 @@
 {% from "tools/defaults.yaml" import rawmap with context %}
 {% set datamap = salt['grains.filter_by'](rawmap, merge=salt['pillar.get']('tools:lookup')) %}
 
-{% for t in salt['pillar.get']('tools:manage') %}
-tool_{{ t.name }}:
+{% for k, v in salt['pillar.get']('tools:manage', {})|dictsort %}
+  {% set tool_name = v.name|default(k) %}
+tool_{{ tool_name }}:
   pkg:
     - installed
-  {% if datamap.tools[t.name] is not defined or datamap.tools[t.name].pkgs is not defined %}
-    - name: {{ t.name }}
+  {% if datamap.tools[tool_name] is not defined or datamap.tools[tool_name].pkgs is not defined %}
+    - name: {{ tool_name }}
   {% else %}
-    - pkgs: {{ datamap.tools[t.name].pkgs }}
+    - pkgs: {{ datamap.tools[tool_name].pkgs }}
   {% endif %}
 {% endfor %}

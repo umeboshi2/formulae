@@ -2,6 +2,9 @@
 tools-formula
 =============
 
+.. image:: https://api.flattr.com/button/flattr-badge-large.png
+    :target: https://flattr.com/submit/auto?user_id=bechtoldt&url=https%3A%2F%2Fgithub.com%2Fbechtoldt%2Fsaltstack-tools-formula
+
 Salt Stack Formula to set up and configure a set of handy tools which are too simple/ small to dedicate individual formulas to
 
 NOTICE BEFORE YOU USE
@@ -58,7 +61,8 @@ Salt Compatibility
 
 Tested with:
 
-* 2014.1.x
+* 2014.1
+* 2014.7
 
 OS Compatibility
 ================
@@ -66,5 +70,4 @@ OS Compatibility
 Tested with:
 
 * GNU/ Linux Debian Squeeze, Wheezy
-* CentOS 6
-* CentOS 7
+* CentOS 6, 7
