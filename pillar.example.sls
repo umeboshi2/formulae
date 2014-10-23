@@ -1,7 +1,7 @@
 tools:
   manage:
-    bzip:
-    colordiff:
-    curl:
-    ed:
-    gzip:
+    bzip: {}
+    colordiff: {}
+    curl: {}
+    ed: {}
+    gzip: {}
