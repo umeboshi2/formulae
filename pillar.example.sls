@@ -46,3 +46,9 @@ apt:
       content: |
         APT::Install-Recommends "0";
         APT::Install-Suggests "0";
+  preferences:
+    999custom:
+      content: |
+        Package: python-requests python-zmq python-urllib3
+        Pin: release a=wheezy-backports
+        Pin-Priority: 1000

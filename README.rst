@@ -2,6 +2,9 @@
 apt-formula
 ===========
 
+.. image:: https://api.flattr.com/button/flattr-badge-large.png
+    :target: https://flattr.com/submit/auto?user_id=bechtoldt&url=https%3A%2F%2Fgithub.com%2Fbechtoldt%2Fsaltstack-apt-formula
+
 Salt Stack Formula to set up and configure APT, Debian's Advanced Package Tool
 
 NOTICE BEFORE YOU USE
@@ -58,7 +61,8 @@ Salt Compatibility
 
 Tested with:
 
-* 2014.1.x
+* 2014.1
+* 2014.7
 
 OS Compatibility
 ================
