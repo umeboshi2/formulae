@@ -2,29 +2,29 @@ apt:
   lookup:
     remove_popularitycontest: True
   repos:
-    - name: os
+    os:
       url: http://http.debian.net/debian/
       globalfile: True
-    - name: security
+    security:
       url: http://security.debian.org/
       dist: {{ salt['grains.get']('oscodename') }}/updates
       globalfile: True
-    - name: backports
+    backports:
       url: http://http.debian.net/debian/
       dist: {{ salt['grains.get']('oscodename') }}-backports
       globalfile: True
-    - name: updates
+    updates:
       url: http://http.debian.net/debian/
       dist: {{ salt['grains.get']('oscodename') }}-updates
       globalfile: True
-    - name: os_ftp
+    os_ftp:
       ensure: absent
       url: http://ftp.debian.org:80/debian/
       comps:
         - non-free
         - contrib
         - main
-    - name: os_src_ftp
+    os_src_ftp:
       ensure: absent
       debtype: deb-src
       url: http://ftp.debian.org:80/debian/
@@ -32,7 +32,7 @@ apt:
         - non-free
         - contrib
         - main
-    - name: security_src_ftp
+    security_src_ftp:
       ensure: absent
       debtype: deb-src
       url: http://security.debian.org/
