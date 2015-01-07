@@ -1,0 +1,66 @@
+{% load_yaml as rawmap %}
+Debian:
+  server:
+    pkgs:
+      - postgresql
+    service:
+      name: postgresql
+    config:
+      manage:
+        - postgresql
+        - pg_hba
+      postgresql:
+        path: /etc/postgresql/9.1/main/postgresql.conf
+      pg_hba:
+        path: /etc/postgresql/9.1/main/pg_hba.conf
+    user:
+      name: postgres
+    group:
+      name: postgres
+  client:
+    pkgs:
+      - postgresql-client
+      - python-pygresql
+RedHat:
+  server:
+    pkgs:
+      - postgresql
+    service:
+      name: postgresql
+    config:
+      manage: []
+    user:
+      name: postgres
+    group:
+      name: postgres
+  client:
+    pkgs:
+      - postgresql-client {# TODO: is this correct? #}
+      - postgresql-python
+Arch:
+  server:
+    pkgs:
+      - postgresql
+    service:
+      name: postgresql
+    config:
+      manage: []
+    user:
+      name: postgres
+    group:
+      name: postgres
+  client:
+    pkgs:
+      - postgresql-client {# TODO: is this correct? #}
+      - python-psycopg2
+FreeBSD:
+  server:
+    service:
+      name: postgresql
+    config:
+      manage: []
+    user:
+      name: pgsql
+    group:
+      name: pgsql
+{% endload %}
