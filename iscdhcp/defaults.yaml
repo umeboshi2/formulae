@@ -17,10 +17,13 @@ Debian:
       default_includes:
         - /etc/dhcp/dhcpd.hosts
         - /etc/dhcp/dhcpd.subnets
+        - /etc/dhcp/dhcpd.subnets.pxe
     hosts:
       path: /etc/dhcp/dhcpd.hosts
     subnets:
       path: /etc/dhcp/dhcpd.subnets
+    pxe_subnets:
+      path: /etc/dhcp/dhcpd.subnets.pxe
 #  user:
 #    name:
 #  group:

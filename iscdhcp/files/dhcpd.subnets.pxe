@@ -1,12 +1,12 @@
 {%- from "iscdhcp/defaults.yaml" import rawmap with context -%}
 {%- set datamap = salt['grains.filter_by'](rawmap, merge=salt['pillar.get']('iscdhcp:lookup')) -%}
 
-{%- if datamap.config.subnets.file_prepend is defined -%}
-{{ datamap.config.subnets.file_prepend }}
+{%- if datamap.config.pxe_subnets.file_prepend is defined -%}
+{{ datamap.config.pxe_subnets.file_prepend }}
 
 {% endif -%}
 
-{%- for s in salt['pillar.get']('iscdhcp:subnets')|default([]) %}
+{%- for s in salt['pillar.get']('iscdhcp:pxe_subnets')|default([]) %}
 
 # {{ s.comment|default('Subnet ' ~ s.network) }}
 subnet {{ s.network }} netmask {{ s.netmask }} {
@@ -38,7 +38,7 @@ subnet {{ s.network }} netmask {{ s.netmask }} {
 }
 {%- endfor -%}
 
-{%- if datamap.config.subnets.file_append is defined %}
+{%- if datamap.config.pxe_subnets.file_append is defined %}
 
-{{ datamap.config.subnets.file_append }}
+{{ datamap.config.pxe_subnets.file_append }}
 {%- endif -%}

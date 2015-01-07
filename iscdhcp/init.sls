@@ -68,3 +68,14 @@ iscdhcp:
     - group: {{ datamap.config.subnets.group|default('root') }}
 {% endif %}
 
+{% if datamap.config.pxe_subnets.manage|default(False) %}
+{{ datamap.config.pxe_subnets.path }}:
+  file:
+    - managed
+    - source: {{ datamap.config.subnets.template_path|default('salt://iscdhcp/files/dhcpd.subnets.pxe') }}
+    - template: {{ datamap.config.subnets.template_renderer|default('jinja') }}
+    - mode: {{ datamap.config.subnets.mode|default('644') }}
+    - user: {{ datamap.config.subnets.user|default('root') }}
+    - group: {{ datamap.config.subnets.group|default('root') }}
+{% endif %}
+
