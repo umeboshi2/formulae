@@ -1,0 +1,5 @@
+{% load_yaml as rawmap %}
+Debian:
+  pkgs:
+    - apt-transport-https
+{% endload %}
