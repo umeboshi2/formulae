@@ -10,6 +10,7 @@ Debian:
       - dhcpd
       - hosts
       - subnets
+      - pxe_subnets
     defaults_file:
       path: /etc/default/isc-dhcp-server
     dhcpd:

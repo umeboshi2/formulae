@@ -68,7 +68,7 @@ iscdhcp:
     - group: {{ datamap.config.subnets.group|default('root') }}
 {% endif %}
 
-{% if datamap.config.pxe_subnets.manage|default(False) %}
+{% if datamap.config.pxe_subnets.manage|default(True) %}
 {{ datamap.config.pxe_subnets.path }}:
   file:
     - managed
