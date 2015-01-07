@@ -1,0 +1,30 @@
+{% load_yaml as rawmap %}
+Debian:
+  tools:
+    bzip:
+      pkgs:
+        - bzip2
+    rar:
+      pkgs:
+        - rar
+        - unrar
+        - unrar-free
+RedHat:
+  tools:
+    bzip:
+      pkgs:
+        - bzip2
+    rar:
+      pkgs: [] {# TODO need extra repo #}
+    sqlite3:
+      pkgs:
+        - sqlite
+    iptraf:
+  {% if salt['grains.get']('osmajorrelease', [0])[0] >= 7 %}
+      pkgs:
+        - iptraf-ng
+  {% else %}
+      pkgs:
+        - iptraf
+  {% endif %}
+{% endload %}
