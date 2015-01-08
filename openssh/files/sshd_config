@@ -1,4 +1,5 @@
-{%- set sshd_config = pillar.get('sshd_config', {}) -%}
+{% set pget = salt['pillar.get'] %}
+{%- set sshd_config = pget('openssh:sshd_config', {}) -%}
 {#- present in sshd_config and known in actual file options -#}
 {%- set processed_options = [] -%}
 
