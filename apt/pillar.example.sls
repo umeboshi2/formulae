@@ -1,3 +1,4 @@
+# -*- mode: yaml -*-
 apt:
   lookup:
     remove_popularitycontest: True
