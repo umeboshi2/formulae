@@ -1,0 +1,13 @@
+{% set pget = salt['pillar.get'] %}
+#
+# Shorewall version 3.2 - NFS Macro
+#
+# /etc/shorewall/macro.NFS
+#
+#	This macro handles sun NFS
+# {% dest = pget('localnet:default-ports:nfs') %} destination port is {{ dest }}
+###############################################################################
+#ACTION	SOURCE	DEST	PROTO	DEST	SOURCE	RATE	USER/
+#				PORT(S)	PORT(S)	LIMIT	GROUP
+PARAM	-	-	tcp	{{ dest }}
+#LAST LINE -- ADD YOUR ENTRIES BEFORE THIS ONE -- DO NOT REMOVE
