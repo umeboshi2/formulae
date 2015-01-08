@@ -11,7 +11,7 @@ sshd_config:
     - user: root
     - mode: 644
     - watch_in:
-      - service: openssh
+      - service: {{ openssh.service }}
 
 {% for keyType in ['ecdsa', 'dsa', 'rsa', 'ed25519'] %}
 {% if salt['pillar.get']('openssh:generate_' ~ keyType ~ '_keys', False) %}
