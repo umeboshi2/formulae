@@ -29,6 +29,7 @@ restart-shorewall:
 /etc/default/shorewall:
   file.managed:
     - source: salt://shorewall/templates/default
+    - template: jinja
     - user: root
     - group: root
     - mode: 644
