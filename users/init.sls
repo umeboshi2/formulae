@@ -121,7 +121,17 @@ user_{{ name }}_public_key:
 
 
 {% if 'ssh_auth' in user %}
-{% for auth in user['ssh_auth'] %}
+{% set ssh_auth = user.get('ssh_auth') %}
+{% if ssh_auth is string and ssh_auth.startswith('salt://') %}
+ssh_auth_{{ name }}_authorized_keys:
+  ssh_auth.present:
+    - user: {{ name }}
+    - source: {{ ssh_auth }}
+    - require:
+        - file: {{ name }}_user
+        - user: {{ name }}_user
+{% else %}    
+{% for auth in ssh_auth %}
 ssh_auth_{{ name }}_{{ loop.index0 }}:
   ssh_auth.present:
     - user: {{ name }}
