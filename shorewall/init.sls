@@ -19,7 +19,7 @@ restart-systemd-for-shorewall-install:
 # a collection of iptable rules that is loaded in the kernel.
 restart-shorewall:
   cmd.wait:
-    - name: /etc/init.d/shorewall restart
+    - name: systemctl daemon-reload && /etc/init.d/shorewall restart
     - unless: shorewall status
     - requires:
       - pkg: shorewall-package

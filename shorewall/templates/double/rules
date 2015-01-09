@@ -1,13 +1,12 @@
 {% set pget = salt['pillar.get'] %}
-{% load_yaml as rawmap %}
-default_base_rules:
-  - drop_all_net
-  - accept_dns_fw2net
-  - accept_ssh_loc2fw
-  - accept_ping_loc2fw
-  - drop_ping_net2fw
-  - accept_icmp_fw2loc
-  - accept_icmp_fw2net
+{% load_yaml as default_base_rules %}
+- drop_all_net
+- accept_dns_fw2net
+- accept_ssh_loc2fw
+- accept_ping_loc2fw
+- drop_ping_net2fw
+- accept_icmp_fw2loc
+- accept_icmp_fw2net
 {% endload %}
 {% set baserules = pget('shorewall:base_rules', default_base_rules) %}
 #
@@ -29,6 +28,8 @@ default_base_rules:
 #SECTION ESTABLISHED
 #SECTION RELATED
 SECTION NEW
+#BASERULES
+#{{ baserules }}
 {% if 'drop_all_net' in baserules %}
 #       Don't allow connection pickup from the net
 #

@@ -1,3 +1,4 @@
+{% set pget = salt['pillar.get'] %}
 #
 # Shorewall version 4.0 - Sample Policy File for two-interface configuration.
 # Copyright (C) 2006 by the Shorewall Team
@@ -36,7 +37,7 @@
 # If you want to force clients to access the Internet via a proxy server
 # on your firewall, change the loc to net policy to REJECT info.
 loc		net		ACCEPT		
-loc		$FW		{{ pget('shorewall:firewall_is_lan_host', False) }}
+loc		$FW		{{ fwsrv.get(pget('shorewall:firewall_is_lan_host', False)) }}
 loc		all		REJECT		info
 {% endif %}
 {% if pget('shorewall:firewall_generates_traffic', False): %}
