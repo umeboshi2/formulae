@@ -7,7 +7,7 @@ include:
   - shorewall.macros
 
 {% if pget('shorewall:shorewall_package') == 'shorewall-init': %}
-#https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=773392
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=773392
 restart-systemd-for-shorewall-install:
   cmd.wait:
     - name: systemctl daemon-reload
@@ -17,6 +17,7 @@ restart-systemd-for-shorewall-install:
 # FIXME
 # Shorewall is not a normal service, such as a running daemon, but
 # a collection of iptable rules that is loaded in the kernel.
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=773392
 restart-shorewall:
   cmd.wait:
     - name: systemctl daemon-reload && /etc/init.d/shorewall restart
