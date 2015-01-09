@@ -1,0 +1,26 @@
+{% set samba = salt['grains.filter_by']({
+    'Debian': {
+        'server': 'samba',
+        'client': 'samba-client',
+        'service': salt['grains.filter_by']({
+	    'lenny': 'samba',
+	    'squeeze': 'samba',
+	    'wheezy': 'samba',
+	    'jessie': 'smbd',
+	    'default': 'smbd',
+	}, grain='oscodename'),
+        'config': '/etc/samba/smb.conf',
+        'config_src': 'salt://samba/files/smb.conf',
+    },
+    'RedHat': {
+        'server': 'samba',
+        'client': 'samba',
+        'service': 'smb',
+        'config': '/etc/samba/smb.conf',
+        'config_src': 'salt://samba/files/smb.conf',
+    },
+}, merge=salt['grains.filter_by']({
+    'Ubuntu': {
+        'service': 'smbd',
+    },
+}, grain='os', merge=salt['pillar.get']('samba:lookup'))) %}
