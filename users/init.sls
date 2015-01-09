@@ -141,6 +141,7 @@ ssh_auth_{{ name }}_{{ loop.index0 }}:
         - user: {{ name }}_user
 {% endfor %}
 {% endif %}
+{% endif %}
 
 {% if 'ssh_auth.absent' in user %}
 {% for auth in user['ssh_auth.absent'] %}
