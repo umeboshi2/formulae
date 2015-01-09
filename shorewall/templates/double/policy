@@ -10,10 +10,47 @@
 # See the file README.txt for further details.
 #------------------------------------------------------------------------------
 # For information about entries in this file, type "man shorewall-policy"
+#
+# Note about policies and logging:
+#	This file contains an explicit policy for every combination of
+#	zones defined in this sample.  This is solely for the purpose of
+#	providing more specific messages in the logs.  This is not
+#	necessary for correct operation of the firewall, but greatly
+#	assists in diagnosing problems. The policies below are logically
+#	equivalent to:
+#
+#	loc	net		ACCEPT
+#	net	all		DROP		info
+#	all	all		REJECT		info
+#
+#	The Shorewall-perl compiler will generate the individual policies
+#	below from the above general policies if you set 
+#	EXPAND_POLICIES=Yes in shorewall.conf. 
+#
 ###############################################################################
 #SOURCE		DEST		POLICY		LOG LEVEL	LIMIT:BURST
+{% if pget('shorewall:lan_access_internet_policy', False) %}
+{% set fwsrv = { True:'ACCEPT', False:'REJECT'} %}
+# Policies for traffic originating from the local LAN (loc)
+#
+# If you want to force clients to access the Internet via a proxy server
+# on your firewall, change the loc to net policy to REJECT info.
+loc		net		ACCEPT		
+loc		$FW		{{ pget('shorewall:firewall_is_lan_host', False) }}
+loc		all		REJECT		info
+{% endif %}
+{% if pget('shorewall:firewall_generates_traffic', False): %}
+#
+# Policies for traffic originating from the firewall ($FW)
+#
+# If you want open access to the Internet from your firewall, change the
+# $FW to net policy to ACCEPT and remove the 'info' LOG LEVEL.
+# This may be useful if you run a proxy server on the firewall.
+$FW		net		ACCEPT		info
+$FW		loc		ACCEPT		info
+$FW		all		REJECT		info
+{% endif %}
 
-loc		net		ACCEPT
 net		all		DROP		info
 # THE FOLLOWING POLICY MUST BE LAST
 all		all		REJECT		info

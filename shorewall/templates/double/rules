@@ -1,4 +1,15 @@
 {% set pget = salt['pillar.get'] %}
+{% load_yaml as rawmap %}
+default_base_rules:
+  - drop_all_net
+  - accept_dns_fw2net
+  - accept_ssh_loc2fw
+  - accept_ping_loc2fw
+  - drop_ping_net2fw
+  - accept_icmp_fw2loc
+  - accept_icmp_fw2net
+{% endload %}
+{% set baserules = pget('shorewall:base_rules', default_base_rules) %}
 #
 # Shorewall version 4.0 - Sample Rules File for two-interface configuration.
 # Copyright (C) 2006,2007 by the Shorewall Team
@@ -18,8 +29,55 @@
 #SECTION ESTABLISHED
 #SECTION RELATED
 SECTION NEW
+{% if 'drop_all_net' in baserules %}
+#       Don't allow connection pickup from the net
+#
+Invalid(DROP)	net		all
+{% endif %}
+{% if 'accept_dns_fw2net' in baserules %}
+#
+#	Accept DNS connections from the firewall to the network
+#
+DNS(ACCEPT)	$FW		net
+{% endif %}
+{% if 'accept_ssh_loc2fw' in baserules %}
+#
+#	Accept SSH connections from the local network for administration
+#
+SSH(ACCEPT)	loc		$FW
+{% endif %}
+{% if 'accept_ping_loc2fw' in baserules %}
+#
+#	Allow Ping from the local network
+#
+Ping(ACCEPT)	loc		$FW
+{% endif %}
+{% if 'drop_ping_net2fw' in baserules %}
+#
+# Drop Ping from the "bad" net zone.. and prevent your log from being flooded..
+#
+Ping(DROP)	net		$FW
+{% endif %}
+{% if 'accept_icmp_fw2loc' in baserules %}
+ACCEPT		$FW		loc		icmp
+{% endif %}
+{% if 'accept_icmp_fw2net' in baserules %}
+ACCEPT		$FW		net		icmp
+{% endif %}
+#
 {% for r in pget('shorewall:rules', []) %}
 {% if 'comment' in r: %}#{{ r['comment'] }}{% endif %}
 #{{ r['name'] }}
-{{ r['action'] }} {{ r['src'] }} {{ r['dest'] }} {{ r.get('proto', '') }}
+{% if 'line' in r: -%}
+  {{ r['line'] }}
+{% else -%}
+  {{ r['action'] }} {{ r['src'] }} {{ r['dest'] }} {{ r.get('proto', '') }}
+{% endif %}
+{% endfor %}
+
+{% for shorewall_macro in pget('shorewall:loc_macros', []) -%}
+  {{ shorewall_macro }}/ACCEPT  loc  $FW
+{% endfor %}
+{% for shorewall_macro in pget('shorewall:net_macros', []) -%}
+  {{ shorewall_macro }}/ACCEPT  net  $FW
 {% endfor %}
