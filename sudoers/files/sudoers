@@ -81,17 +81,17 @@ Cmnd_Alias {{ name }} = {{ ",".join(commands) }}
 Runas_Alias {{ name }} = {{ ",".join(runas) }}
 {%- endfor %}
 
-# User privilege specification
-{%- for user,specs in users.items() %}
-  {%- for spec in specs %}
-{{ user }} {{ spec }}
-  {%- endfor %}
-{%- endfor %}
-
 # Group privilege specification
 {%- for group,specs in groups.items() %}
   {%- for spec in specs %}
 %{{ group }} {{ spec }}
+  {%- endfor %}
+{%- endfor %}
+
+# User privilege specification
+{%- for user,specs in users.items() %}
+  {%- for spec in specs %}
+{{ user }} {{ spec }}
   {%- endfor %}
 {%- endfor %}
 
