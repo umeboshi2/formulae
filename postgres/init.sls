@@ -89,8 +89,8 @@ postgres-db-{{ name }}:
   postgres_database.present:
     - name: {{ name }}
     - encoding: {{ salt['pillar.get']('postgres:databases:'+ name +':encoding', 'UTF8') }}
-    - lc_ctype: {{ salt['pillar.get']('postgres:databases:'+ name +':lc_ctype', 'en_US.UTF8') }}
-    - lc_collate: {{ salt['pillar.get']('postgres:databases:'+ name +':lc_collate', 'en_US.UTF8') }}
+    - lc_ctype: {{ salt['pillar.get']('postgres:databases:'+ name +':lc_ctype', 'en_US.UTF-8') }}
+    - lc_collate: {{ salt['pillar.get']('postgres:databases:'+ name +':lc_collate', 'en_US.UTF-8') }}
     - template: {{ salt['pillar.get']('postgres:databases:'+ name +':template', 'template1') }}
     {% if salt['pillar.get']('postgres:databases:'+ name +':owner') %}
     - owner: {{ salt['pillar.get']('postgres:databases:'+ name +':owner') }}
