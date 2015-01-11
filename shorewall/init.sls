@@ -7,13 +7,19 @@ include:
   - shorewall.macros
 
 {% if pget('shorewall:shorewall_package') == 'shorewall-init': %}
+{% if not ['wheezy'].count(salt['grains.get']('oscodename')) %}
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=773392
 restart-systemd-for-shorewall-install:
   cmd.wait:
     - name: systemctl daemon-reload
     - watch:
       - pkg: shorewall-package
+{% endif %}
         
+{% set restart_cmd = '/etc/init.d/shorewall restart' %}
+{% if not ['wheezy'].count(salt['grains.get']('oscodename')) %}
+{% set restart_cmd = 'systemctl daemon-reload && %s' % restart_cmd %}
+{% endif %}
 # FIXME
 # Shorewall is not a normal service, such as a running daemon, but
 # a collection of iptable rules that is loaded in the kernel.

@@ -52,6 +52,11 @@ $FW		loc		ACCEPT		info
 $FW		all		REJECT		info
 {% endif %}
 
+{# this policy is needed for vagrant environment #}
+{% if pget('shorewall:firewall_accepts_net', False) %}
+net             $FW             ACCEPT          info
+{% endif %}
+
 net		all		DROP		info
 # THE FOLLOWING POLICY MUST BE LAST
 all		all		REJECT		info
