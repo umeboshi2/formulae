@@ -26,7 +26,7 @@ restart-systemd-for-shorewall-install:
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=773392
 restart-shorewall:
   cmd.wait:
-    - name: systemctl daemon-reload && /etc/init.d/shorewall restart
+    - name: {{ restart_cmd }}
     - unless: shorewall status
     - requires:
       - pkg: shorewall-package
