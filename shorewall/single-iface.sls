@@ -1,6 +1,5 @@
 #!pydsl
 # -*- mode: python -*-
-
 import os
 
 saltpath_prefix = 'salt://shorewall/templates/single'
