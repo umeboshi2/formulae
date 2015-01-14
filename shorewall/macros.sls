@@ -7,9 +7,6 @@ def macro_deploy_path(macro):
 def template_path(macro):
     return 'salt://shorewall/templates/macros/macro.%s' % macro
 
-
-
-
 macros = ['BootpC','BootpS', 'DHCP','GkrellmD',
           'MountD', 'NFS', 'Portmap', 'StatD',
           'ManageSieve', 'SaltMaster']
