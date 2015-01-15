@@ -19,6 +19,13 @@ livebuild-image-config-directory-{{ imgname }}:
   file.directory:
     - name: {{ cfgdir }}
     - makedirs: true
+      
+livebuild-execute-config-command-{{ imgname }}:
+  cmd.run:
+    - name: lb config
+    - cwd: {{ imgdir }}
+    - unless: test -d {{ imgdir }}/auto
+      
 {% for cfgfile in ['binary', 'bootstrap', 'chroot', 'common'] %}
 livebuild-image-config-file-{{ imgname }}-{{ cfgfile }}:
   file.managed:
@@ -29,11 +36,6 @@ livebuild-image-config-file-{{ imgname }}-{{ cfgfile }}:
         imgname: {{ imgname }}
 {% endfor %}
 
-livebuild-execute-config-command-{{ imgname }}:
-  cmd.run:
-    - name: lb config
-    - cwd: {{ imgdir }}
-    - unless: test -d {{ imgdir }}/auto
 {% endfor %}
 
 {% endif %}
