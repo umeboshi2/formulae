@@ -124,7 +124,7 @@ _QUIET="{{- get(imgname, '_quiet', 'false') -}}"
 
 # Internal stuff (FIXME)
 APT_OPTIONS="{{- get(imgname, 'apt_options', '--yes') -}}"
-APTITUDE_OPTIONS="{{- get(imgname, '--assume-yes -}}"
+APTITUDE_OPTIONS="{{- get(imgname, 'aptitude_options', '--assume-yes') -}}"
 DEBOOTSTRAP_OPTIONS="{{- get(imgname, 'debootstrap_options', '') -}}"
 CDEBOOTSTRAP_OPTIONS="{{- get(imgname, 'cdebootstrap_options', '') -}}"
 GZIP_OPTIONS="{{- get(imgname, 'gzip_options', '-6 --rsyncable') -}}"
