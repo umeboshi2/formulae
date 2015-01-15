@@ -24,7 +24,7 @@ livebuild-execute-config-command-{{ imgname }}:
   cmd.run:
     - name: lb config
     - cwd: {{ imgdir }}
-    - unless: test -d {{ imgdir }}/auto
+    - unless: test -h {{ cfgdir }}/hooks/0010-disable-kexec-tools.hook.chroot
       
 {% for cfgfile in ['binary', 'bootstrap', 'chroot', 'common'] %}
 livebuild-image-config-file-{{ imgname }}-{{ cfgfile }}:
