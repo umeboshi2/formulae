@@ -14,7 +14,7 @@ livebuild-parent-directory:
 {% set images = pget('livebuild:images', {}) %}
 {% for imgname in images %}
 {% set imgdir = '%s/%s' % (parent_directory, imgname) %}
-{% set cfgdir = '%s/%s' % (imgdir, cfgdir) %}
+{% set cfgdir = '%s/%s' % (imgdir, 'config') %}
 livebuild-image-config-directory-{{ imgname }}:
   file.directory:
     - name: {{ cfgdir }}
