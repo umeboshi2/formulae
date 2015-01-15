@@ -7,7 +7,7 @@ live-build-package:
       - live-build
 
 {% for imgname in ['default', 'foobar'] %}
-{% image = pget('livebuild:images:%s' % imgname, {}) %}
+{% set image = pget('livebuild:images:%s' % imgname, {}) %}
 testfile-binary-{{ imgname }}:
   file.managed:
     - name: /tmp/testfile-{{ imgname }}.txt
