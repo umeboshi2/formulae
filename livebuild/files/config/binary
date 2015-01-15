@@ -155,7 +155,8 @@ LB_SWAP_FILE_PATH="{{- get(imgname, 'swap_file_path', '') -}}"
 
 # $LB_SWAP_FILE_SIZE: set swap file size
 # (Default: 512)
-LB_SWAP_FILE_SIZE="{{- get(imgname, 'swap_file_size', '512') -}}
+LB_SWAP_FILE_SIZE="{{- get(imgname, 'swap_file_size', '512') -}}"
+
 
 _FOOBAR="foobar-{{ imgname }}.foobar"
-"
+
