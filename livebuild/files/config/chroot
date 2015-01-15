@@ -1,8 +1,8 @@
 # config/chroot - options for live-build(7), chroot stage
-{%- set pget = salt['pillar.get'] %}
+{% set pget = salt['pillar.get'] %}
 {% macro get(imgname, key, default) %}
 {{- pget('livebuild:images:%s:%s' % (imgname, key), default) -}}
-{% endmacro %}
+{% endmacro -%}
 
 # $LB_CHROOT_FILESYSTEM: set chroot filesystem
 # (Default: squashfs)
