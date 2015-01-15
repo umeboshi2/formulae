@@ -1,7 +1,7 @@
 # config/binary - options for live-build(7), binary stage
 {% set pget = salt['pillar.get'] %}
 {% macro get(imgname, key, default) %}
-{{ pget('livebuild:%s:%s' % (imgname, key), default) }}
+{{ pget('livebuild:images:%s:%s' % (imgname, key), default) }}
 {% endmacro %}
 
 # $LB_BINARY_FILESYSTEM: set image filesystem
@@ -83,7 +83,7 @@ LB_ISO_PREPARER="{{ get(imgname, 'iso_preparer', 'live-build $VERSION; http://li
 
 # $LB_ISO_PUBLISHER: set iso publisher
 # (Default: Live Systems project; http://live-systems.org/; debian-live@lists.debian.org)
-LB_ISO_PUBLISHER="{{ get(imgname, 'iso_publisher', 'Live Systems project; http://live-systems.org/; debian-live@lists.debian.org) }}"
+LB_ISO_PUBLISHER="{{ get(imgname, 'iso_publisher', 'Live Systems project; http://live-systems.org/; debian-live@lists.debian.org') }}"
 
 # $LB_ISO_VOLUME: set iso volume (max 32 chars)
 # (Default: Debian jessie $(date +%Y%m%d-%H:%M))
