@@ -38,7 +38,7 @@ LB_BOOTSTRAP="{{- get(imgname, 'bootstrap', 'debootstrap') -}}"
 
 # $LB_CACHE: control cache
 # (Default: true)
-LB_CACHE="{{- get(imgname, 'cache', 'true' -}}"
+LB_CACHE="{{- get(imgname, 'cache', 'true') -}}"
 
 # $LB_CACHE_INDICES: control if downloaded package indices should be cached
 # (Default: false)
