@@ -28,6 +28,12 @@ livebuild-image-config-file-{{ imgname }}-{{ cfgfile }}:
     - context:
         imgname: {{ imgname }}
 {% endfor %}
+
+livebuild-execute-config-command-{{ imgname }}:
+  cmd.run:
+    - name: lb config
+    - cwd: {{ imgdir }}
+    - unless: /bin/false
 {% endfor %}
 
 {% endif %}
