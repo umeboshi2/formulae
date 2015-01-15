@@ -2,72 +2,72 @@
 
 # $LB_DISTRIBUTION: select distribution to use
 # (Default: jessie)
-LB_DISTRIBUTION="jessie"
+LB_DISTRIBUTION="{{- get(imgname, 'distribution', 'jessie') -}}"
 
 # $LB_PARENT_DISTRIBUTION: select parent distribution to use
 # (Default: jessie)
-LB_PARENT_DISTRIBUTION="jessie"
+LB_PARENT_DISTRIBUTION="{{- get(imgname, 'parent_distribution', 'jessie') -}}"
 
 # $LB_PARENT_DEBIAN_INSTALLER_DISTRIBUTION: select parent distribution for debian-installer to use
 # (Default: jessie)
-LB_PARENT_DEBIAN_INSTALLER_DISTRIBUTION="jessie"
+LB_PARENT_DEBIAN_INSTALLER_DISTRIBUTION="{{- get(imgname, 'parent_debian_installer_distribution', 'jessie') -}}"
 
 # $LB_PARENT_MIRROR_BOOTSTRAP: set parent mirror to bootstrap from
 # (Default: http://ftp.debian.org/debian/)
-LB_PARENT_MIRROR_BOOTSTRAP="http://ftp.debian.org/debian/"
+LB_PARENT_MIRROR_BOOTSTRAP="{{- get(imgname, 'parent_mirror_bootstrap', 'http://ftp.debian.org/debian/') -}}"
 
 # $LB_PARENT_MIRROR_CHROOT: set parent mirror to fetch packages from
 # (Default: http://ftp.debian.org/debian/)
-LB_PARENT_MIRROR_CHROOT="http://ftp.debian.org/debian/"
+LB_PARENT_MIRROR_CHROOT="{{- get(imgname, 'parent_mirror_chroot', 'http://ftp.debian.org/debian/') -}}"
 
 # $LB_PARENT_MIRROR_CHROOT_SECURITY: set security parent mirror to fetch packages from
 # (Default: http://security.debian.org/)
-LB_PARENT_MIRROR_CHROOT_SECURITY="http://security.debian.org/"
+LB_PARENT_MIRROR_CHROOT_SECURITY="{{- get(imgname, 'parent_mirror_chroot_security', 'http://security.debian.org/') -}}"
 
 # $LB_PARENT_MIRROR_BINARY: set parent mirror which ends up in the image
 # (Default: http://http.debian.net/debian/)
-LB_PARENT_MIRROR_BINARY="http://http.debian.net/debian/"
+LB_PARENT_MIRROR_BINARY="{{- get(imgname, 'parent_mirror_binary', 'http://http.debian.net/debian/') -}}"
 
 # $LB_PARENT_MIRROR_BINARY_SECURITY: set security parent mirror which ends up in the image
 # (Default: http://security.debian.org/)
-LB_PARENT_MIRROR_BINARY_SECURITY="http://security.debian.org/"
+LB_PARENT_MIRROR_BINARY_SECURITY="{{- get(imgname, 'parent_mirror_binary_security', 'http://security.debian.org/') -}}"
 
 # $LB_PARENT_MIRROR_DEBIAN_INSTALLER: set debian-installer parent mirror
 # (Default: http://ftp.debian.org/debian/)
-LB_PARENT_MIRROR_DEBIAN_INSTALLER="http://ftp.debian.org/debian/"
+LB_PARENT_MIRROR_DEBIAN_INSTALLER="{{- get(imgname, 'parent_mirror_debian_installer', 'http://ftp.debian.org/debian/') -}}"
 
 # $LB_MIRROR_BOOTSTRAP: set mirror to bootstrap from
 # (Default: http://ftp.debian.org/debian/)
-LB_MIRROR_BOOTSTRAP="http://ftp.debian.org/debian/"
+LB_MIRROR_BOOTSTRAP="{{- get(imgname, 'mirror_bootstrap', 'http://ftp.debian.org/debian/') -}}"
 
 # $LB_MIRROR_CHROOT: set mirror to fetch packages from
 # (Default: http://ftp.debian.org/debian/)
-LB_MIRROR_CHROOT="http://ftp.debian.org/debian/"
+LB_MIRROR_CHROOT="{{- get(imgname, 'mirror_chroot', 'http://ftp.debian.org/debian/') -}}"
 
 # $LB_MIRROR_CHROOT_SECURITY: set security mirror to fetch packages from
 # (Default: http://security.debian.org/)
-LB_MIRROR_CHROOT_SECURITY="http://security.debian.org/"
+LB_MIRROR_CHROOT_SECURITY="{{- get(imgname, 'mirror_chroot_security', 'http://security.debian.org/') -}}"
 
 # $LB_MIRROR_BINARY: set mirror which ends up in the image
 # (Default: http://http.debian.net/debian/)
-LB_MIRROR_BINARY="http://http.debian.net/debian/"
+LB_MIRROR_BINARY="{{- get(imgname, 'mirror_binary', 'http://http.debian.net/debian/') -}}"
 
 # $LB_MIRROR_BINARY_SECURITY: set security mirror which ends up in the image
 # (Default: http://security.debian.org/)
-LB_MIRROR_BINARY_SECURITY="http://security.debian.org/"
+LB_MIRROR_BINARY_SECURITY="{{- get(imgname, 'mirror_binary_security', 'http://security.debian.org/') -}}"
 
 # $LB_MIRROR_DEBIAN_INSTALLER: set debian-installer mirror
 # (Default: http://ftp.debian.org/debian/)
-LB_MIRROR_DEBIAN_INSTALLER="http://ftp.debian.org/debian/"
+LB_MIRROR_DEBIAN_INSTALLER="{{- get(imgname, 'mirror_debian_installer', 'http://ftp.debian.org/debian/') -}}"
 
 # $LB_BOOTSTRAP_QEMU_ARCHITECTURES: architectures to use foreign bootstrap
 # (Default: )
-LB_BOOTSTRAP_QEMU_ARCHITECTURES=""
+LB_BOOTSTRAP_QEMU_ARCHITECTURES="{{- get(imgname, 'bootstrap_qemu_architectures', '') -}}"
 
 # $LB_BOOTSTRAP_QEMU_EXCLUDE: packages to exclude during foreign bootstrap
 # (Default: )
-LB_BOOTSTRAP_QEMU_EXCLUDE=""
+LB_BOOTSTRAP_QEMU_EXCLUDE="{{- get(imgname, 'bootstrap_qemu_exclude', '') -}}"
 
 # $LB_BOOTSTRAP_QEMU_STATIC: static qemu binary for foreign bootstrap
 # (Default: )
-LB_BOOTSTRAP_QEMU_STATIC=""
+LB_BOOTSTRAP_QEMU_STATIC="{{- get(imgname, 'bootstrap_qemu_static', '') -}}"
