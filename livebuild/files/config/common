@@ -1,5 +1,5 @@
 # config/common - common options for live-build(7)
-{% set pget = salt['pillar.get'] %}
+{%- set pget = salt['pillar.get'] %}
 {% macro get(imgname, key, default) %}
 {{- pget('livebuild:images:%s:%s' % (imgname, key), default) -}}
 {% endmacro %}
