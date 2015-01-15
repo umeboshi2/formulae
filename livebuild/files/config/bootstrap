@@ -1,4 +1,8 @@
 # config/bootstrap - options for live-build(7), bootstrap stage
+{% set pget = salt['pillar.get'] %}
+{% macro get(imgname, key, default) %}
+{{- pget('livebuild:images:%s:%s' % (imgname, key), default) -}}
+{% endmacro %}
 
 # $LB_DISTRIBUTION: select distribution to use
 # (Default: jessie)

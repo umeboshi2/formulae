@@ -6,8 +6,13 @@ live-build-package:
     - pkgs:
       - live-build
 
-{% for imgname in ['default', 'foobar'] %}
-{% set image = pget('livebuild:images:%s' % imgname, {}) %}
+{% if pget('livebuild:parent_directory', '') %}
+livebuild-parent-directory:
+  file.directory:
+    - name: {{ pget('livebuild:parent_directory') }}
+
+{% set images = pget('livebuild:images', {}) %}
+{% for imgname in images %}
 testfile-binary-{{ imgname }}:
   file.managed:
     - name: /tmp/testfile-{{ imgname }}.txt
@@ -16,4 +21,6 @@ testfile-binary-{{ imgname }}:
     - context:
         imgname: {{ imgname }}
 {% endfor %}
+
+{% endif %}
 
