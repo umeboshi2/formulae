@@ -33,7 +33,7 @@ livebuild-execute-config-command-{{ imgname }}:
   cmd.run:
     - name: lb config
     - cwd: {{ imgdir }}
-    - unless: /bin/false
+    - unless: test -d {{ imgdir }}/auto
 {% endfor %}
 
 {% endif %}
