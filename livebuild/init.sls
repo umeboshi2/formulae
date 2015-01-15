@@ -28,6 +28,7 @@ livebuild-image-config-file-{{ imgname }}-{{ cfgfile }}:
     - context:
         imgname: {{ imgname }}
 {% endfor %}
+{% endfor %}
 
 {% endif %}
 
