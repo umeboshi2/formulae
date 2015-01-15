@@ -1,8 +1,8 @@
 # config/binary - options for live-build(7), binary stage
-{%- set pget = salt['pillar.get'] %}
+{% set pget = salt['pillar.get'] %}
 {% macro get(imgname, key, default) %}
 {{- pget('livebuild:images:%s:%s' % (imgname, key), default) -}}
-{% endmacro %}
+{% endmacro -%}
 
 # $LB_BINARY_FILESYSTEM: set image filesystem
 # (Default: fat32)
