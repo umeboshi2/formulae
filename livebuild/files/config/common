@@ -2,7 +2,7 @@
 {%- set pget = salt['pillar.get'] %}
 {% macro get(imgname, key, default) %}
 {{- pget('livebuild:images:%s:%s' % (imgname, key), default) -}}
-{%- endmacro -%}
+{% endmacro -%}
 
 # $LB_APT: set package manager
 # (Default: apt)
