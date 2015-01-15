@@ -14,15 +14,16 @@ livebuild-parent-directory:
 {% set images = pget('livebuild:images', {}) %}
 {% for imgname in images %}
 {% set imgdir = '%s/%s' % (parent_directory, imgname) %}
+{% set cfgdir = '%s/%s' % (imgdir, cfgdir) %}
 livebuild-image-config-directory-{{ imgname }}:
   file.directory:
-    - name: {{ imgdir }}/config
+    - name: {{ cfgdir }}
     - makedirs: true
-      
-testfile-binary-{{ imgname }}:
+{% for cfgfile in ['binary', 'bootstrap', 'chroot', 'common'] %}
+livebuild-image-config-file-{{ imgname }}-{{ cfgfile }}:
   file.managed:
-    - name: /tmp/testfile-{{ imgname }}.txt
-    - source: salt://livebuild/files/config/binary
+    - name: {{ cfgdir }}/{{ cfgfile }}
+    - source: salt://livebuild/files/config/{{ cfgfile }}
     - template: jinja
     - context:
         imgname: {{ imgname }}
