@@ -1,158 +1,158 @@
 # config/binary - options for live-build(7), binary stage
 {% set pget = salt['pillar.get'] %}
 {% macro get(imgname, key, default) %}
-{{- pget('livebuild:images:%s:%s' % (imgname, key), default) }}
+{{- pget('livebuild:images:%s:%s' % (imgname, key), default) -}}
 {% endmacro %}
 
 # $LB_BINARY_FILESYSTEM: set image filesystem
 # (Default: fat32)
-LB_BINARY_FILESYSTEM="{{- get(imgname, 'binary_filesystem', 'fat32') }}"
+LB_BINARY_FILESYSTEM="{{- get(imgname, 'binary_filesystem', 'fat32') -}}"
 
 # $LB_APT_INDICES: set apt/aptitude generic indices
 # (Default: true)
-LB_APT_INDICES="{{- get(imgname, 'apt_indices', 'true') }}"
+LB_APT_INDICES="{{- get(imgname, 'apt_indices', 'true') -}}"
 
 # $LB_BOOTAPPEND_LIVE: set boot parameters
 # (Default: empty)
-LB_BOOTAPPEND_LIVE="{{- get(imgname, 'bootappend_live', 'boot=live components quiet splash') }}"
+LB_BOOTAPPEND_LIVE="{{- get(imgname, 'bootappend_live', 'boot=live components quiet splash') -}}"
 
 # $LB_BOOTAPPEND_INSTALL: set boot parameters
 # (Default: empty)
-LB_BOOTAPPEND_INSTALL="{{- get(imgname, 'bootappend_install', '') }}"
+LB_BOOTAPPEND_INSTALL="{{- get(imgname, 'bootappend_install', '') -}}"
 
 # $LB_BOOTAPPEND_LIVE_FAILSAFE: set boot parameters
 # (Default: empty)
-LB_BOOTAPPEND_LIVE_FAILSAFE="{{- get(imgname, 'bootappend_live_failsafe', 'boot=live components memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal') }}"
+LB_BOOTAPPEND_LIVE_FAILSAFE="{{- get(imgname, 'bootappend_live_failsafe', 'boot=live components memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal') -}}"
 
 # $LB_BOOTLOADER: set bootloader
 # (Default: syslinux)
-LB_BOOTLOADER="{{- get(imgname, 'bootloader', 'syslinux') }}"
+LB_BOOTLOADER="{{- get(imgname, 'bootloader', 'syslinux') -}}"
 
 # $LB_CHECKSUMS: set checksums
 # (Default: md5)
-LB_CHECKSUMS="{{- get(imgname, 'checksums', 'md5') }}"
+LB_CHECKSUMS="{{- get(imgname, 'checksums', 'md5') -}}"
 
 # $LB_COMPRESSION: set compression
 # (Default: none)
-LB_COMPRESSION="{{- get(imgname, 'checksums', 'none') }}"
+LB_COMPRESSION="{{- get(imgname, 'checksums', 'none') -}}"
 
 # $LB_ZSYNC: set zsync
 # (Default: true)
-LB_ZSYNC="{{- get(imgname, 'zsync', 'true') }}"
+LB_ZSYNC="{{- get(imgname, 'zsync', 'true') -}}"
 
 # ${LB_BUILD_WITH_CHROOT: control if we build binary images chrooted
 # (Default: true)
 # DO NEVER, *NEVER*, *N*E*V*E*R* SET THIS OPTION to false.
-LB_BUILD_WITH_CHROOT="{{- get(imgname, 'build_with_chroot', 'true') }}"
+LB_BUILD_WITH_CHROOT="{{- get(imgname, 'build_with_chroot', 'true') -}}"
 
 # $LB_DEBIAN_INSTALLER: set debian-installer
 # (Default: false)
-LB_DEBIAN_INSTALLER="{{- get(imgname, 'debian_installer', 'false') }}"
+LB_DEBIAN_INSTALLER="{{- get(imgname, 'debian_installer', 'false') -}}"
 
 # $LB_DEBIAN_INSTALLER_DISTRIBUTION: set debian-installer suite
 # (Default: empty)
-LB_DEBIAN_INSTALLER_DISTRIBUTION="{{- get(imgname, 'debian_installer_distribution', 'jessie') }}"
+LB_DEBIAN_INSTALLER_DISTRIBUTION="{{- get(imgname, 'debian_installer_distribution', 'jessie') -}}"
 
 # $LB_DEBIAN_INSTALLER_PRESEEDFILE: set debian-installer preseed filename/url
 # (Default: )
-LB_DEBIAN_INSTALLER_PRESEEDFILE="{{- get(imgname, 'debian_installer_preseedfile', '') }}"
+LB_DEBIAN_INSTALLER_PRESEEDFILE="{{- get(imgname, 'debian_installer_preseedfile', '') -}}"
 
 # $LB_DEBIAN_INSTALLER_GUI: toggle use of GUI debian-installer
 # (Default: true)
-LB_DEBIAN_INSTALLER_GUI="{{- get(imgname, 'debian_installer_gui', 'true') }}"
+LB_DEBIAN_INSTALLER_GUI="{{- get(imgname, 'debian_installer_gui', 'true') -}}"
 
 # $LB_GRUB_SPLASH: set custom grub splash
 # (Default: empty)
-LB_GRUB_SPLASH="{{- get(imgname, 'grub_splash', '') }}"
+LB_GRUB_SPLASH="{{- get(imgname, 'grub_splash', '') -}}"
 
 # $LB_HDD_LABEL: set hdd label
 # (Default: DEBIAN_LIVE)
-LB_HDD_LABEL="{{- get(imgname, 'hdd_label', 'DEBIAN_LIVE') }}"
+LB_HDD_LABEL="{{- get(imgname, 'hdd_label', 'DEBIAN_LIVE') -}}"
 
 # $LB_HDD_SIZE: set hdd filesystem size
 # (Default: auto)
-LB_HDD_SIZE="{{- get(imgname, 'hdd_size', 'auto') }}"
+LB_HDD_SIZE="{{- get(imgname, 'hdd_size', 'auto') -}}"
 
 # $LB_ISO_APPLICATION: set iso author
 # (Default: Debian Live)
-LB_ISO_APPLICATION="{{- get(imgname, 'iso_application', 'Debian Live') }}"
+LB_ISO_APPLICATION="{{- get(imgname, 'iso_application', 'Debian Live') -}}"
 
 # $LB_ISO_PREPARER: set iso preparer
 # (Default: live-build $VERSION; http://live-systems.org/devel/live-build)
-LB_ISO_PREPARER="{{- get(imgname, 'iso_preparer', 'live-build $VERSION; http://live-systems.org/devel/live-build') }}"
+LB_ISO_PREPARER="{{- get(imgname, 'iso_preparer', 'live-build $VERSION; http://live-systems.org/devel/live-build') -}}"
 
 # $LB_ISO_PUBLISHER: set iso publisher
 # (Default: Live Systems project; http://live-systems.org/; debian-live@lists.debian.org)
-LB_ISO_PUBLISHER="{{- get(imgname, 'iso_publisher', 'Live Systems project; http://live-systems.org/; debian-live@lists.debian.org') }}"
+LB_ISO_PUBLISHER="{{- get(imgname, 'iso_publisher', 'Live Systems project; http://live-systems.org/; debian-live@lists.debian.org') -}}"
 
 # $LB_ISO_VOLUME: set iso volume (max 32 chars)
 # (Default: Debian jessie $(date +%Y%m%d-%H:%M))
-LB_ISO_VOLUME="{{- get(imgname, 'iso_volume', 'Debian jessie $(date +%Y%m%d-%H:%M)') }}"
+LB_ISO_VOLUME="{{- get(imgname, 'iso_volume', 'Debian jessie $(date +%Y%m%d-%H:%M)') -}}"
 
 # $LB_JFFS2_ERASEBLOCK: set jffs2 eraseblock size
 # (Default: unset)
-LB_JFFS2_ERASEBLOCK="{{- get(imgname, 'jffs2_eraseblock', '') }}"
+LB_JFFS2_ERASEBLOCK="{{- get(imgname, 'jffs2_eraseblock', '') -}}"
 
 # $LB_MEMTEST: set memtest
 # (Default: none)
-LB_MEMTEST="{{- get(imgname, 'memtest', 'none') }}"
+LB_MEMTEST="{{- get(imgname, 'memtest', 'none') -}}"
 
 # $LB_LOADLIN: set loadlin
 # (Default: false)
-LB_LOADLIN="{{- get(imgname, 'loadlin', 'false') }}"
+LB_LOADLIN="{{- get(imgname, 'loadlin', 'false') -}}"
 
 # $LB_WIN32_LOADER: set win32-loader
 # (Default: false)
-LB_WIN32_LOADER="{{- get(imgname, 'win32_loader', 'false') }}"
+LB_WIN32_LOADER="{{- get(imgname, 'win32_loader', 'false') -}}"
 
 # $LB_NET_ROOT_FILESYSTEM: set netboot filesystem
 # (Default: nfs)
-LB_NET_ROOT_FILESYSTEM="{{- get(imgname, 'net_root_filesystem', 'nfs') }}"
+LB_NET_ROOT_FILESYSTEM="{{- get(imgname, 'net_root_filesystem', 'nfs') -}}"
 
 # $LB_NET_ROOT_MOUNTOPTIONS: set nfsopts
 # (Default: empty)
-LB_NET_ROOT_MOUNTOPTIONS="{{- get(imgname, 'net_root_mountoptions', '') }}"
+LB_NET_ROOT_MOUNTOPTIONS="{{- get(imgname, 'net_root_mountoptions', '') -}}"
 
 # $LB_NET_ROOT_PATH: set netboot server directory
 # (Default: /srv/debian-live)
-LB_NET_ROOT_PATH="{{- get(imgname, 'net_root_path', '/srv/debian-live') }}"
+LB_NET_ROOT_PATH="{{- get(imgname, 'net_root_path', '/srv/debian-live') -}}"
 
 # $LB_NET_ROOT_SERVER: set netboot server address
 # (Default: 192.168.1.1)
-LB_NET_ROOT_SERVER="{{- get(imgname, 'net_root_server', '192.168.1.1') }}"
+LB_NET_ROOT_SERVER="{{- get(imgname, 'net_root_server', '192.168.1.1') -}}"
 
 # $LB_NET_COW_FILESYSTEM: set net client cow filesystem
 # (Default: nfs)
-LB_NET_COW_FILESYSTEM="{{- get(imgname, 'net_cow_filesystem', 'nfs') }}"
+LB_NET_COW_FILESYSTEM="{{- get(imgname, 'net_cow_filesystem', 'nfs') -}}"
 
 # $LB_NET_COW_MOUNTOPTIONS: set cow mount options
 # (Default: empty)
-LB_NET_COW_MOUNTOPTIONS="{{- get(imgname, 'net_cow_mountoptions', '') }}"
+LB_NET_COW_MOUNTOPTIONS="{{- get(imgname, 'net_cow_mountoptions', '') -}}"
 
 # $LB_NET_COW_PATH: set cow directory
 # (Default: )
-LB_NET_COW_PATH="{{- get(imgname, 'net_cow_path', '') }}"
+LB_NET_COW_PATH="{{- get(imgname, 'net_cow_path', '') -}}"
 
 # $LB_NET_COW_SERVER: set cow server
 # (Default: )
-LB_NET_COW_SERVER="{{- get(imgname, 'net_cow_server', '') }}"
+LB_NET_COW_SERVER="{{- get(imgname, 'net_cow_server', '') -}}"
 
 # $LB_NET_TARBALL: set net tarball
 # (Default: true)
-LB_NET_TARBALL="{{- get(imgname, 'net_tarball', 'true') }}"
+LB_NET_TARBALL="{{- get(imgname, 'net_tarball', 'true') -}}"
 
 # $LB_FIRMWARE_BINARY: include firmware packages in debian-installer
 # (Default: true)
-LB_FIRMWARE_BINARY="{{- get(imgname, 'firmware_binary', 'true') }}"
+LB_FIRMWARE_BINARY="{{- get(imgname, 'firmware_binary', 'true') -}}"
 
 # $LB_FIRMWARE_CHROOT: include firmware packages in debian-installer
 # (Default: true)
-LB_FIRMWARE_CHROOT="{{- get(imgname, 'firmware_chroot', 'true') }}"
+LB_FIRMWARE_CHROOT="{{- get(imgname, 'firmware_chroot', 'true') -}}"
 
 # $LB_SWAP_FILE_PATH: set swap file path
 # (Default: )
-LB_SWAP_FILE_PATH="{{- get(imgname, 'swap_file_path', '') }}"
+LB_SWAP_FILE_PATH="{{- get(imgname, 'swap_file_path', '') -}}"
 
 # $LB_SWAP_FILE_SIZE: set swap file size
 # (Default: 512)
-LB_SWAP_FILE_SIZE="{{- get(imgname, 'swap_file_size', '512') }}"
+LB_SWAP_FILE_SIZE="{{- get(imgname, 'swap_file_size', '512') -}}"
