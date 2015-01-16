@@ -1,10 +1,15 @@
+{% set pget = salt['pillar.get'] %}
+{% macro get(imgname, key, default) %}
+{{- pget('livebuild:images:%s:%s' % (imgname, key), default) -}}
+{% endmacro -%}
 [Image]
-Architecture: amd64
-Archive-Areas: main
-Distribution: jessie
-Mirror-Bootstrap: http://ftp.debian.org/debian/
+Architecture: {{ get(imgname, 'architectures', 'amd64') }}
+Archive-Areas: {{ get(imgname 'archive_areas', 'main') }
+Distribution: {{ get(imgname 'distribution', 'jessie') }
+Mirror-Bootstrap: {{ get(imgname, 'mirror_bootstrap', 'http://ftp.debian.org/debian/') }}
 
 [FIXME]
 Configuration-Version: 4.0.3
-Name: live-image
-Type: iso-hybrid
+Name: {{ imgname }}
+Type: {{ get(imgname, 'binary_images', 'iso-hybrid') }}
+

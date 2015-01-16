@@ -26,7 +26,7 @@ livebuild-execute-config-command-{{ imgname }}:
     - cwd: {{ imgdir }}
     - unless: test -h {{ cfgdir }}/hooks/0010-disable-kexec-tools.hook.chroot
       
-{% for cfgfile in ['binary', 'bootstrap', 'chroot', 'common'] %}
+{% for cfgfile in ['binary', 'bootstrap', 'build', 'chroot', 'common'] %}
 livebuild-image-config-file-{{ imgname }}-{{ cfgfile }}:
   file.managed:
     - name: {{ cfgdir }}/{{ cfgfile }}
