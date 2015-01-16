@@ -4,8 +4,8 @@
 {% endmacro -%}
 [Image]
 Architecture: {{ get(imgname, 'architectures', 'amd64') }}
-Archive-Areas: {{ get(imgname 'archive_areas', 'main') }}
-Distribution: {{ get(imgname 'distribution', 'jessie') }}
+Archive-Areas: {{ get(imgname, 'archive_areas', 'main') }}
+Distribution: {{ get(imgname, 'distribution', 'jessie') }}
 Mirror-Bootstrap: {{ get(imgname, 'mirror_bootstrap', 'http://ftp.debian.org/debian/') }}
 
 [FIXME]
