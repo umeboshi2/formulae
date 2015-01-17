@@ -10,7 +10,8 @@ netboot-support-packages:
     - pkgs:
       - debian-installer-7.0-netboot-amd64
       - debian-installer-7.0-netboot-i386
-
+      - di-netboot-assistant
+      
 
 tftpd-parent-directory:
   file.directory:
