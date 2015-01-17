@@ -28,6 +28,11 @@ touch-kadm5.acl:
       - cmd: touch-kadm5.acl
     - text:
       - '*/admin *'
+
+/tmp/addprincs.temp:
+  file.managed:
+    - source: salt://kerberos/files/addprincs.jinja
+    - template: jinja
       
 # read only filesystem?
 kerberos-log-directory:
