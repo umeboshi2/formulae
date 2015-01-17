@@ -1,7 +1,7 @@
 # -*- mode: yaml -*-
 {% set pget = salt['pillar.get'] %}
 {% set domain = pget('openldap:slapd:domain', 'example.org') %}
-{% set basedn = ','.join(['dc=%s' % p for p in domain.split('.')]) %}
+{% set basedn = ['dc='+ p for p in domain.split('.')]|join(',') %}
 
 debconf-slapd:
   debconf.set:
