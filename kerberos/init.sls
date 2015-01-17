@@ -60,7 +60,14 @@ kerberos-packages:
     - requires:
       - file: krb5-config-file
       - file: kdc-config-file
-
+{% if pget('kerberos:install-kdc-ldap', False) %}
+kdc-ldap-package:
+  pkg.installed:
+    - pkgs:
+      - krb5-kdc-ldap
+    - requires:
+      - pkg: kerberos-packages
+{% endif %}        
       
 kerberos-create-db:
   cmd.run:
