@@ -1,0 +1,7 @@
+# /etc/default/tftpd-hpa
+{% set pget = salt['pillar.get'] %}
+
+TFTP_USERNAME="{{ pget('tftpd:username', 'tftp') }}"
+TFTP_DIRECTORY="{{ pget('tftpd:directory', '/srv/tftp') }}"
+TFTP_ADDRESS="{{ pget('tftpd:address', '0.0.0.0:69') }}"
+TFTP_OPTIONS="{{ pget('tftpd:options', '--secure') }}"
