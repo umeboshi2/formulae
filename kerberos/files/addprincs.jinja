@@ -1,7 +1,7 @@
 #!/usr/sbin/kadmin.local
 {%- set pget = salt['pillar.get'] -%}
 {%- set default_realm = salt['grains.get']('domain').upper() -%}
-{%- set mainrealm = pget('kerberos:mainrealm', default_realm) -%}
+{%- set mainrealm = pget('kerberos:mainrealm', default_realm) %}
 {% for princ in pget('kerberos:principals', []) -%}
 ank +needchange -pw {{ princ.password }} {{ princ.name }}
 {% endfor -%}  
