@@ -31,7 +31,7 @@ touch-kadm5.acl:
 
 /tmp/addprincs.temp:
   file.absent:
-    name: /tmp/addprincs.temp
+    - name: /tmp/addprincs.temp
     
 # add default princs
 {% for princ in pget('kerberos:principals', []) %}
