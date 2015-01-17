@@ -12,6 +12,10 @@ debconf-slapd:
         'slapd/domain': {'type': 'string', 'value': '{{ pget("openldap:slapd:domain", "example.org") }}'}
         
 
+ldap-utils-packages:
+  pkg.installed:
+    - pkgs:
+      - ldap-utils
 
 slapd-packages:
   pkg.installed:
