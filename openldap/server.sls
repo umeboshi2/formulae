@@ -11,6 +11,9 @@
 {%- endmacro %}
 {% set basedn = make_basedn(domain) -%}
 
+include:
+  - openldap.common
+
 debconf-slapd:
   debconf.set:
     - name: slapd
@@ -25,11 +28,6 @@ debconf-slapd:
         'slapd/internal/admin': {'type': 'string', 'value', '^cn=admin,{{ basedn }}$'}
         'shared/organization': {'type': 'string', 'value', '{{ pget("openldap:organization", "organization") }}'}
         
-
-ldap-utils-packages:
-  pkg.installed:
-    - pkgs:
-      - ldap-utils
 
 slapd-packages:
   pkg.installed:
