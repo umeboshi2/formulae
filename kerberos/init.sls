@@ -16,10 +16,16 @@ kdc-config-file:
     - template: jinja
     - makedirs: true
       
+
+touch-kadm5.acl:
+  cmd.run:
+    - name: touch /etc/krb5kdc/kadm5.acl
+    - unless: test -r /etc/krb5kdc/kadm5.acl
+      
 /etc/krb5kdc/kadm5.acl:
   file.prepend:
     - requires:
-      - file: kdc-config-file
+      - cmd: touch-kadm5.acl
     - text:
       - '*/admin *'
       
