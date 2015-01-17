@@ -30,10 +30,18 @@ touch-kadm5.acl:
       - '*/admin *'
 
 /tmp/addprincs.temp:
-  file.managed:
-    - source: salt://kerberos/files/addprincs.jinja
-    - template: jinja
-      
+  file.absent:
+    name: /tmp/addprincs.temp
+    
+# add default princs
+{% for princ in pget('kerberos:principals', []) %}
+add-princ-{{ princ.name }}:
+  cmd.run:
+    - name: kadmin.local -q 'ank -pw {{ princ.password }} {{ princ.name }}'
+    - unless: test -n "`kadmin.local -q listprincs | grep {{ princ.name }}`"
+{% endfor %}
+
+    
 # read only filesystem?
 kerberos-log-directory:
   file.directory:
