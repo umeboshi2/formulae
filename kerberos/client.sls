@@ -3,6 +3,9 @@
 {% set default_realm = salt['grains.get']('domain').upper() %}
 {% set mainrealm = pget('kerberos:mainrealm', default_realm) %}
 
-include:
-  - kerberos.client
-  
+kerberos-client packages:
+  pkg.installed:
+    - pkgs:
+      - krb5-user
+      - libpam-krb5
+      - libsasl2-modules-gssapi-mit
