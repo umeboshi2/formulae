@@ -27,7 +27,7 @@ touch-kadm5.acl:
     - requires:
       - cmd: touch-kadm5.acl
     - text:
-      - '*/admin *'
+      - '*/admin@{{ mainrealm }} *'
 
 /tmp/addprincs.temp:
   file.absent:
