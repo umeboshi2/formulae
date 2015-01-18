@@ -6,6 +6,7 @@
 kerberos-client packages:
   pkg.installed:
     - pkgs:
+      - ntp
       - krb5-user
       - libpam-krb5
       - libsasl2-modules-gssapi-mit
