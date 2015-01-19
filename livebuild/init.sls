@@ -10,7 +10,8 @@ live-build-package:
 livebuild-parent-directory:
   file.directory:
     - name: {{ parent_directory }}
-
+    - makedirs: true
+      
 {% set images = pget('livebuild:images', {}) %}
 {% for imgname in images %}
 {% set imgdir = '%s/%s' % (parent_directory, imgname) %}
