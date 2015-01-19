@@ -33,6 +33,8 @@ iscdhcp:
     - mode: {{ datamap.config.defaults_file.mode|default('644') }}
     - user: {{ datamap.config.defaults_file.user|default('root') }}
     - group: {{ datamap.config.defaults_file.group|default('root') }}
+    - require_in:
+      - pkg: iscdhcp
 {% endif %}
 
 {% if datamap.config.dhcpd.manage|default(True) %}
