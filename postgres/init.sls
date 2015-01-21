@@ -2,8 +2,20 @@
 
 install-postgresql:
   pkg.installed:
+    {% if salt['pillar.get']('postgres:install_contrib', False) %}
+    - pkgs:
+      - {{ postgres.pkg }}
+      - {{ postgres.pkg_contrib }}
+    {% else %}
     - name: {{ postgres.pkg }}
-
+    {% endif %}
+    # 
+    #- reset_system_locale: False
+    #- env:
+    #  LC_ALL: {{ salt['pillar.get']('postgres:locale', 'en_US.UTF-8') }}
+      
+      
+        
 {% if postgres.create_cluster != False %}
 create-postgresql-cluster:
   cmd.run:
