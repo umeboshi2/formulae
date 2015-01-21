@@ -1,6 +1,15 @@
 {% if grains['os_family'] == 'Debian' %}
 {% from "apt-cacher/ng/map.jinja" import apt_cacher_ng with context %}
 
+apt-cacher-defaults-file:
+  file.managed:
+    - name: {{ apt_cacher_ng.defaults_file }}
+    - source: salt://apt-cacher/ng/files/defaults
+    - template: jinja
+    - require_in:
+      - pkg: apt-cacher-ng
+      - service: apt-cacher-ng
+
 apt-cacher-ng:
   pkg.installed:
     - name: {{ apt_cacher_ng.pkg }}
