@@ -27,7 +27,7 @@ apt-cacher-ng:
     - makedirs: True
     - user: {{ apt_cacher_ng.user }}
     - group: {{ apt_cacher_ng.group }}
-    - mode: '2755'
+    - mode: {{ apt_cacher_ng.server_cache_dir_mode }}
 
 {{ apt_cacher_ng.server_log_dir }}:
   file.directory:
