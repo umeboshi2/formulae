@@ -19,5 +19,5 @@
 DAEMON_OPTS=" -c /etc/apt-cacher-ng "
 
 # added for saltstack-formula
-USER={{ apt-cacher-ng.user }}
-GROUP={{ apt-cacher-ng.group }}
+USER={{ apt_cacher_ng.user }}
+GROUP={{ apt_cacher_ng.group }}
