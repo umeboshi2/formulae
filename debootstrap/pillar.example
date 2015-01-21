@@ -1,0 +1,53 @@
+debootstrap:
+  # This section is usually not needed, except if you deal
+  # with unknow repositories or if you want to override a mirror
+  # to use (see debootstrap/vendor_data.jinja for the default
+  # values)
+  vendor:
+    debian:          # Name of the vendor
+      repositories:  # Overrides/defines mirror to use
+        default: http://ftp.fr.debian.org/debian
+	security: http://security.debian.org
+      components:    # Default list of components
+        - main
+	- contrib
+	- non-free
+      # Options to pass to debootstrap/cdebootstrap
+      debootstrap_options: '--no-check-gpg'
+      cdebootstrap_options: '--allow-unauthenticated'
+      # Extend/override data about available distributions
+      dists:
+        wheezy:
+         repository: default # this is the default value
+        wheezy-security:
+          parent: wheezy
+          repository: security
+        experimental:
+          components:
+            - main
+    ubuntu:
+      ...
+
+  # Choose the tool to use to create the chroots (among "debootstrap" and
+  # "cdebootstrap", the latter is the default)
+  implementation: cdebootstrap
+
+  # The base directory hosting the chroots when no explicit directory is
+  # provided
+  basedir: /srv/chroots
+
+  # List of chroots to setup with debootstrap (see README.rst for a detailed
+  # explanation)
+  chroots:
+    unstable:
+      directory: /srv/chroots/unstable
+      vendor: debian
+      dist: sid
+      arch: amd64
+      components:
+        - main
+	- contrib
+	- non-free
+      extra_dists:
+        - experimental
+      with_source: True
