@@ -1,0 +1,21 @@
+{% set pget = salt['pillar.get'] %}
+# default mirrors
+#ftp.debian.org 
+#security.debian.org
+# /etc/squid-deb-proxy/mirror-dstdomain.acl.d/20-paella
+# 
+# network destinations that are allowed by this cache
+
+# launchpad personal package archives (disabled by default)
+#ppa.launchpad.net
+
+# add additional mirror domains here (disabled by default)
+#linux.dropbox.com
+#download.virtualbox.org
+#archive.getdeb.net
+#packages.medibuntu.org
+#dl.google.com
+
+{% for domain in pget('squid:debproxy:dstdomains', []) -%}
+{{ domain }}
+{% endfor -%}
