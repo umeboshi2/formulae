@@ -3,8 +3,7 @@
 {% from "apt/defaults.yaml" import rawmap with context %}
 {% set datamap = salt['grains.filter_by'](rawmap, merge=salt['pillar.get']('apt:lookup')) %}
 
-{% set repos = salt['pillar.get']('apt:repos', {}) %}
-{% for id, r in repos|dictsort %}
+{% for id, r in salt['pillar.get']('apt:repos', {})|dictsort %}
 aptrepo_{{ r.name|default(id) }}:
   pkgrepo:
     - {{ r.ensure|default('managed') }}
@@ -16,4 +15,3 @@ aptrepo_{{ r.name|default(id) }}:
     - key_url: {{ r.keyuri }}
   {% endif %}
 {% endfor %}
-

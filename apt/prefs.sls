@@ -13,4 +13,3 @@ aptpref_{{ k }}:
     - group: root
     - contents_pillar: apt:preferences:{{ k }}:content
 {% endfor %}
-
