@@ -11,7 +11,7 @@ iscsitarget-dkms:
 
 /etc/iet/ietd.conf:
   file.managed:
-    - source: salt://iscsi/ietd.conf
+    - source: salt://nas/iscsi/ietd.conf
     - template: jinja
     - user: root
     - group: root

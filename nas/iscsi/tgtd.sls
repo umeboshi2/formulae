@@ -4,7 +4,7 @@ tgt:
 
 /etc/init.d/tgtd:
   file.managed:
-    - source: salt://iscsi/tgtd.init
+    - source: salt://nas/iscsi/tgtd.init
     - user: root
     - group: root
     - mode: 755
@@ -20,7 +20,7 @@ update-rc.d tgtd defaults:
 
 /etc/default/tgtd:
   file.managed:
-    - source: salt://iscsi/tgtd.default
+    - source: salt://nas/iscsi/tgtd.default
     - user: root
     - group: root
     - mode: 644
@@ -36,7 +36,7 @@ tgtd:
 
 /tmp/tgtd_configurator.sh:
   file.managed:
-    - source: salt://iscsi/tgtd_configurator.sh.tpl
+    - source: salt://nas/iscsi/tgtd_configurator.sh.tpl
     - user: root
     - group: root
     - mode: 700

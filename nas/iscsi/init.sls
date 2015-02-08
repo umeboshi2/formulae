@@ -1,7 +1,7 @@
 include:
 {% if pillar.get('iscsi', {})['target'] == 'tgtd' %}
-  - iscsi.tgtd
+  - nas.iscsi.tgtd
 {% endif %}
 {% if pillar.get('iscsi', {})['target'] == 'ietd' %}
-  - iscsi.ietd
+  - nas.iscsi.ietd
 {% endif %}
