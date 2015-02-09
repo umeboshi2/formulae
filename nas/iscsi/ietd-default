@@ -1,0 +1,7 @@
+{% set pget = salt['pillar.get'] %}
+ISCSITARGET_ENABLE={{ pget('iscsi:enable_target_daemon', 'false') }}
+
+
+# ietd options
+# See ietd(8) for details
+ISCSITARGET_OPTIONS=""
