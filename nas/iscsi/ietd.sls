@@ -21,3 +21,14 @@ iscsitarget-dkms:
       - pkg: iscsitarget
     - watch_in:
       - service: iscsitarget
+
+/etc/default/iscsitarget:
+  file.managed:
+    - source: salt://nas/iscsi/ietd-default
+    - template: jinja
+    - backup: .bak
+    - require:
+      - pkg: iscsitarget
+    - watch_in:
+      - service: iscsitarget
+    
