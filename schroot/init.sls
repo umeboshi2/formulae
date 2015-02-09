@@ -1,5 +1,5 @@
 include:
   - schroot.prereq
 
-{% from 'state.jinja' import schroot_state_loop %}
+{% from 'schroot/state.jinja' import schroot_state_loop %}
 {{ schroot_state_loop() }}
