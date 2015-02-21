@@ -7,10 +7,10 @@
   {% set tool_name = v.name|default(k) %}
 tool_{{ tool_name }}:
   pkg:
-    - installed
-  {% if datamap.tools[tool_name] is not defined or datamap.tools[tool_name].pkgs is not defined %}
+    - {{ v.ensure|default('installed') }}
+  {% if datamap['tools'][tool_name] is not defined or datamap['tools'][tool_name]['pkgs'] is not defined %}
     - name: {{ tool_name }}
   {% else %}
-    - pkgs: {{ datamap.tools[tool_name].pkgs }}
+    - pkgs: {{ datamap['tools'][tool_name].pkgs }}
   {% endif %}
 {% endfor %}
