@@ -1,6 +1,6 @@
 template:
   lookup:
     foo: False
-    bar: 'nofoo'
+    bar: 'nofood'
     fo:
       - onlybar
