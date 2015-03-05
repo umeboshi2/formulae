@@ -28,6 +28,9 @@
     - user: {{ name }}
     - group: {{ user_group }}
     - mode: {{ user.get('user_dir_mode', '0750') }}
+    {%- if user.get('createhome_makedirs', False) %}
+    - makedirs: true
+    {%- endif %}
     - require:
       - user: {{ name }}
       - group: {{ user_group }}
