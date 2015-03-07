@@ -28,9 +28,6 @@
     - user: {{ name }}
     - group: {{ user_group }}
     - mode: {{ user.get('user_dir_mode', '0750') }}
-    {%- if user.get('createhome_makedirs', False) %}
-    - makedirs: true
-    {%- endif %}
     - require:
       - user: {{ name }}
       - group: {{ user_group }}
@@ -51,6 +48,9 @@
     {% endif -%}
     {% if 'password' in user -%}
     - password: '{{ user['password'] }}'
+    {% endif -%}
+    {% if 'empty_password' in user -%}
+    - empty_password: '{{ user['empty_password'] }}'
     {% endif -%}
     {% if 'prime_group' in user and 'gid' in user['prime_group'] -%}
     - gid: {{ user['prime_group']['gid'] }}
