@@ -1,9 +1,12 @@
-os_family:
-  Debian:
+kernel:
+  Linux:
     tools:
       bzip:
         pkgs:
           - bzip2
+os_family:
+  Debian:
+    tools:
       rar:
         pkgs:
           - rar
@@ -11,9 +14,6 @@ os_family:
           - unrar-free
   RedHat:
     tools:
-      bzip:
-        pkgs:
-          - bzip2
       rar:
         pkgs: []
       sqlite3:
