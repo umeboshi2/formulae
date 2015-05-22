@@ -1,6 +1,7 @@
 {% from 'debootstrap/vendor_data.jinja' import vendor_data %}
 
 {% set debootstrap_impl = salt['pillar.get']('debootstrap:implementation', 'cdebootstrap') %}
+{% set http_proxy = salt['pillar.get']('debootstrap:http_proxy', False) %}
 
 {# Try to identify the vendor of a given distribution #}
 {%- macro find_vendor_for_dist(dist_to_search) -%}
@@ -99,6 +100,10 @@ debootstrap_{{ data.id }}:
     - unless: test -d {{ data.directory }}
     - user: root
     - group: root
+    {% if http_proxy %}
+    - env:
+      - http_proxy: {{ http_proxy }}
+    {% endif %}
     - require:
       - sls: {{ sls_require }}
 
@@ -121,6 +126,9 @@ debootstrap_{{ data.id }}_apt_update:
     - name: chroot {{ data.directory }} sh -c "apt-get update && apt-get -o Dpkg::Options::=--force-confnew -o Dpkg::Options::=--force-confdef -y dist-upgrade"
     - env:
       - DEBIAN_FRONTEND: noninteractive
+      {% if http_proxy %}
+      - http_proxy: {{ http_proxy }}
+      {% endif %}
     - user: root
     - group: root
     - watch:
