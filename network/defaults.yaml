@@ -24,6 +24,8 @@ Debian:
       - master
       - mode
       - slaves
+      # uml_swith
+      - tunctl_user
       #TODO - broadcast
       # IPV6
       - enable_ipv6
