@@ -70,6 +70,22 @@ rndc_key:
       - service: binddns
 {% endif %}
 
+{% if salt['pillar.get']('binddns:forwarders_config_file', False) %}
+forwarders_config_file:
+  file:
+    - managed
+    - name: /etc/bind/named.conf.forwarders
+    # only  manage the file if it doesn't exist
+    - replace: false
+    - source: salt://binddns/files/named.conf.forwarders
+    - template: jinja
+    - mode: '640'
+    - user: bind
+    - group: bind
+    - watch_in:
+      - service: binddns
+{% endif %}
+
 {% if 'options' in datamap.config.manage %}
 options:
   file:

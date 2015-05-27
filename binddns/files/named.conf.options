@@ -13,12 +13,18 @@ dnssec-validation {{ datamap.dnssec_validation|default('auto') }};
 {{ opt }};
 {%- endfor %}
 
+{% if salt['pillar.get']('binddns:forwarders_config_file', False) -%}
+include "/etc/bind/named.conf.forwarders";
+{%- else %}
+
 {% if salt['pillar.get']('binddns:forwarders', False) -%}
 forwarders {
   {%- for f in salt['pillar.get']('binddns:forwarders') %}
   {{ f }};
   {%- endfor %}
 };
+{%- endif %}
+
 {%- endif %}
 
 listen-on {
