@@ -7,7 +7,7 @@
 
         'vhostdir': '/etc/apache2/sites-available',
         'confdir': '/etc/apache2/conf.d',
-        'confext': '',
+        'confext': '.conf',
         'default_site': 'default',
         'default_site_ssl': 'default-ssl',
         'logdir': '/var/log/apache2',
@@ -29,6 +29,21 @@
         'wwwdir': '/var/www',
         'use_require': False,
     },
+    'Suse': {
+        'server': 'apache2',
+        'service': 'apache2',
+
+        'mod_wsgi': 'apache2-mod_wsgi',
+
+        'vhostdir': '/etc/apache2/vhosts.d',
+        'confdir': '/etc/httpd/conf.d',
+        'confext': '.conf',
+        'default_site': 'vhost.template',
+        'default_site_ssl': 'vhost-ssl.template',
+        'logdir': '/var/log/apache2',
+        'wwwdir': '/srv/www',
+        'use_require': True,
+    },
     'FreeBSD': {
         'server': 'apache22',
         'service': 'apache22',
@@ -45,16 +60,23 @@
         'use_require': False,
     },
 }, merge=salt['grains.filter_by']({
-    '14.04': {
+    'trusty': {
         'confext': '.conf',
         'default_site': '000-default.conf',
         'default_site_ssl': 'default-ssl.conf',
         'use_require': True,
     },
-    '14.10': {
+    'utopic': {
         'confext': '.conf',
         'default_site': '000-default.conf',
         'default_site_ssl': 'default-ssl.conf',
         'use_require': True,
     },
-}, grain='lsb_distrib_release', merge=salt['pillar.get']('apache:lookup'))) %}
+    'jessie': {
+        'wwwdir': '/var/www',
+        'confext': '.conf',
+        'default_site': '000-default.conf',
+        'default_site_ssl': 'default-ssl.conf',
+        'use_require': True,
+    },
+}, grain='oscodename', merge=salt['pillar.get']('apache:lookup'))) %}
