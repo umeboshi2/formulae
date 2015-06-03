@@ -18,7 +18,7 @@ apache:
       template_file: salt://apache/vhosts/minimal.tmpl
 
     example.com: # must be unique; used as an ID declaration in Salt.
-      template_file: salt://apache/vhosts/standard.tmpl
+      template_file: salt://apache/vhosts/standard.tmpl # or redirect.tmpl or proxy.tmpl
 
       ####################### DEFAULT VALUES BELOW ############################
       # NOTE: the values below are simply default settings that *can* be
@@ -44,6 +44,9 @@ apache:
 
       DocumentRoot: /path/to/www/dir/example.com # E.g., /var/www/example.com
 
+      SSLCertificateFile: /etc/ssl/mycert.pem # if ssl is desired
+      SSLCertificateKeyFile: /etc/ssl/mycert.pem.key # if key for cert is needed or in an extra file
+
       Directory:
         # "default" is a special case; Adds ``/path/to/www/dir/example.com``
         # E.g.: /var/www/example.com
@@ -57,6 +60,19 @@ apache:
             Additional config as a
             multi-line string here
 
+      # if template is 'redirect.tmpl'
+      # RedirectSource: '/'
+      # RedirectTarget: 'http://www.example.net'
+
+      # if template is 'proxy.tmpl'
+      # ProxyPreserveHost: 'On'
+      # ProxyRoute: 
+      #   my sample route:
+      #      ProxyPassSource: '/'
+      #      ProxyPassTarget: 'http://www.example.net'
+      #      ProxyPassReverseSource: '/'
+      #      ProxyPassReverseTarget: 'http://www.example.net'
+
       Formula_Append: |
         Additional config as a
         multi-line string here
@@ -68,6 +84,10 @@ apache:
       name: 'my name'
       path: 'salt://path/to/sites-available/conf/file'
       state: 'enabled'
+      # Optional - use managed file as Jinja Template
+      #template: true
+      #defaults:
+      #  custom_var: "default value"
 
   modules:
     enabled:  # List modules to enable
