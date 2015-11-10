@@ -1,0 +1,28 @@
+kernel:
+  Linux:
+    tools:
+      bzip:
+        pkgs:
+          - bzip2
+os_family:
+  Debian:
+    tools:
+      rar:
+        pkgs:
+          - rar
+          - unrar
+          - unrar-free
+  RedHat:
+    tools:
+      rar:
+        pkgs: []
+      sqlite3:
+        pkgs:
+          - sqlite
+      iptraf:
+        pkgs:
+          - iptraf
+osfinger:
+  'CentOS Linux-7':
+    pkgs:
+      - iptraf-ng
