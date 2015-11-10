@@ -17,6 +17,12 @@ dnssec-validation {{ datamap.dnssec_validation|default('auto') }};
 include "/etc/bind/named.conf.forwarders";
 {%- else %}
 
+{% if datamap.config.options.additional is defined -%}
+{%- for f in datamap.config.options.additional %}
+{{ f }};
+{%- endfor %}
+{%- endif %}
+
 {% if salt['pillar.get']('binddns:forwarders', False) -%}
 forwarders {
   {%- for f in salt['pillar.get']('binddns:forwarders') %}
