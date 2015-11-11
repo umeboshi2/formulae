@@ -4,7 +4,7 @@ nginx:
   pkg.installed:
     - name: {{ nginx.server }}
   service.running:
-    - name: {{ samba.service }}
+    - name: {{ nginxservice }}
     - enable: True
     - require:
       - pkg: nginx
