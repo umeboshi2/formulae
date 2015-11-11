@@ -4,7 +4,7 @@ nginx:
   pkg.installed:
     - name: {{ nginx.server }}
   service.running:
-    - name: {{ nginxservice }}
+    - name: {{ nginx.service }}
     - enable: True
     - require:
       - pkg: nginx
