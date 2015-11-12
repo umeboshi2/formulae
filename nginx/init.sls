@@ -1,11 +1,18 @@
-{% from "nginx/map.jinja" import nginx with context %}
+{% from "nginx/map.jinja" import nginx as nginx_map with context %}
 
-nginx:
-  pkg.installed:
-    - name: {{ nginx.server }}
-  service.running:
-    - name: {{ nginx.service }}
-    - enable: True
-    - require:
-      - pkg: nginx
-      
+include:
+  - nginx.common
+{% if salt['pillar.get']('nginx:use_upstart', nginx_map['use_upstart']) %}
+  - nginx.upstart
+{% elif salt['pillar.get']('nginx:use_sysvinit', nginx_map['use_sysvinit']) %}
+  - nginx.sysvinit
+{% endif %}
+{% if pillar.get('nginx', {}).get('user_auth_enabled', true) %}
+  - nginx.users
+{% endif %}
+{% if pillar.get('nginx', {}).get('install_from_source', false) %}
+  - nginx.source
+{% else %}
+  - nginx.package
+{% endif -%}
+
