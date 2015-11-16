@@ -5,6 +5,7 @@
 {{ pget('supervisor.programs', "I dont exist") }}
 [program:{{ program }}]
 command={{ config['command'] }}
-{% for key in config %}
+{% set keys = [k for k in config if k != 'command'] %}
+{% for key in keys %}
 {{ key }}={{ config[key] }}
 {% endfor %}
