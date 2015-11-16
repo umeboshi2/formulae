@@ -17,10 +17,10 @@ supervisor_conf_file:
     - source: salt://supervisor/files/supervisord.conf
     - template: jinja
 
-{% for program in pget('supervisor:programs', []) %}
-supervisor_program_file_{{ program }}:
-  file.managed:
-    - name: /tmp/{{ program }}.test
-    - source: salt://supervisor/files/program-conf
-    #- template: jinja
-{% endfor %}
+#{% for program in pget('supervisor:programs', []) %}
+#supervisor_program_file_{{ program }}:
+#  file.managed:
+#    - name: /tmp/{{ program }}.test
+#    - source: salt://supervisor/files/program-conf
+#    #- template: jinja
+#{% endfor %}
