@@ -25,7 +25,7 @@ supervisor_tmp_file:
 {% for program in pget('supervisor:programs', []) %}
 supervisor_program_file_{{ program }}:
   file.managed:
-    - name: /tmp/{{ program }}.test
+    - name: /etc/supervisor/conf.d/{{ program }}.conf
     - source: salt://supervisor/files/program-conf
     - template: mako
     - context:
