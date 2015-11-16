@@ -21,10 +21,9 @@ supervisor_conf_file:
 tmp_file_{{ key }}:
   file.managed:
     - name: /tmp/supervisor-key-{{ key }}
-    - contents: {{ pget('supervisor.%s' % key) }}
+    - contents: {{ pget('supervisor:%s' % key) }}
 {% endfor %}
       
-{% set programs = pget('supervisor.programs', []) %}
 {% for program in pget('supervisor.programs') %}
 supervisor_program_file_{{ program }}:
   file.managed:
