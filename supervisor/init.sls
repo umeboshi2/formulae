@@ -19,7 +19,7 @@ supervisor_conf_file:
 
 
 {% set programs = pget('supervisor.programs', []) %}
-{% for program in programs %}
+{% for program in pget('supervisor.programs') %}
 supervisor_program_file_{{ program }}:
   file.managed:
     - name: /tmp/{{ program }}.test
