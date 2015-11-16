@@ -23,4 +23,5 @@ supervisor_program_file_{{ program }}:
     - name: /tmp/{{ program }}.test
     #- contents: "hello there"
     - source: salt://supervisor/files/program-conf
+    - template: jinja
 {% endfor %}
