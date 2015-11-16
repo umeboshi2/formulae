@@ -1,4 +1,10 @@
 # -*- mode: jinja2 -*-
 {% from "supervisor/map.jinja" import supervisor with context %}
 {% set pget = salt['pillar.get'] %}
+{% set config = pget('supervisor:programs:%s' % program) %}
 {{ pget('supervisor.programs', "I dont exist") }}
+[program:{{ program }}]
+command={{ config['command'] }}
+{% for key in config %}
+{{ key }}={{ config[key] }}
+{% endfor %}

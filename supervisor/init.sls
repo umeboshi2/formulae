@@ -28,4 +28,6 @@ supervisor_program_file_{{ program }}:
     - name: /tmp/{{ program }}.test
     - source: salt://supervisor/files/program-conf
     - template: jinja
+    - context:
+        program: {{ program }}
 {% endfor %}
