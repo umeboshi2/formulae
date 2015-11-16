@@ -1,4 +1,3 @@
-# -*- mode: mako -*-
 <%
 pget = salt['pillar.get']
 config = pget('supervisor:programs:%s' % program)
