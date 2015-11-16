@@ -17,14 +17,7 @@ supervisor_conf_file:
     - source: salt://supervisor/files/supervisord.conf
     - template: jinja
 
-{% for key in pget('supervisor') %}
-tmp_file_{{ key }}:
-  file.managed:
-    - name: /tmp/supervisor-key-{{ key }}
-    - contents: {{ pget('supervisor:%s' % key) }}
-{% endfor %}
-      
-{% for program in pget('supervisor.programs') %}
+{% for program in pget('supervisor:programs', []) %}
 supervisor_program_file_{{ program }}:
   file.managed:
     - name: /tmp/{{ program }}.test
