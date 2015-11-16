@@ -20,8 +20,9 @@ supervisor_conf_file:
 
 {% set programs = pget('supervisor.programs', []) %}
 {% for program in programs %}
-supervisor_program_file:
+supervisor_program_file_{{ program }}:
   file.managed:
     - name: /tmp/{{ program }}.test
-    - contents: "hello there"
+    #- contents: "hello there"
+    - source: salt://supervisor/files/program-conf
 {% endfor %}

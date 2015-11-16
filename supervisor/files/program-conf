@@ -1,0 +1,4 @@
+# -*- mode: jinja2 -*-
+{% from "supervisor/map.jinja" import supervisor with context %}
+{% set pget = salt['pillar.get'] %}
+{{ pget('supervisor.programs', "I dont exist") }}
