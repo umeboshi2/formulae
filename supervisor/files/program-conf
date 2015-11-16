@@ -1,11 +1,11 @@
-# -*- mode: jinja2 -*-
-{% from "supervisor/map.jinja" import supervisor with context %}
-{% set pget = salt['pillar.get'] %}
-{% set config = pget('supervisor:programs:%s' % program) %}
-{{ pget('supervisor.programs', "I dont exist") }}
-[program:{{ program }}]
-command={{ config['command'] }}
-{% set keys = [k for k in config if k != 'command'] %}
-{% for key in keys %}
-{{ key }}={{ config[key] }}
-{% endfor %}
+# -*- mode: mako -*-
+<%
+pget = salt['pillar.get']
+config = pget('supervisor:programs:%s' % program)
+keys = [k for k in config if k != 'command']
+%>
+[program:${program}]
+command=${config['command']}
+%for key in keys:
+${key}=${config[key]}
+%endfor
