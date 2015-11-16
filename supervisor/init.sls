@@ -30,7 +30,7 @@ supervisor_program_file_{{ program }}:
     - template: mako
     - context:
         program: {{ program }}
-    - watch:
+    - watch_in:
         - service: supervisor
           
         
