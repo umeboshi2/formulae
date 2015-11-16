@@ -17,11 +17,6 @@ supervisor_conf_file:
     - source: salt://supervisor/files/supervisord.conf
     - template: jinja
 
-supervisor_tmp_file:
-  file.managed:
-    - name: /tmp/sutmp
-    - contents: {{ pget('supervisor:programs') }}
-      
 {% for program in pget('supervisor:programs', []) %}
 supervisor_program_file_{{ program }}:
   file.managed:
