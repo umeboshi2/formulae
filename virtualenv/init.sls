@@ -19,7 +19,7 @@ system_virtualenv_path:
 {% for venv in pget('virtualenv:system_environments', []) %}
 {% set vcfg = pget('virtualenv:system_environments:%s' % venv, {}) %}
 system_virtualenv_environment_{{ venv }}:
-  file.managed:
+  virtualenv.managed:
     {% if 'name' not in vcfg %}
     - name: {{ parent }}/{{ venv }}
     {% endif %}
