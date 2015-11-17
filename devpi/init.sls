@@ -25,6 +25,12 @@ devpi_virtualenv:
     - requirements: salt://devpi/reqs.txt
     - require:
         - user: devpi_user
+
+devpi_create_index:
+  cmd.run:
+    - name: /var/lib/devpi/venv/bin/devpi-server --recreate-search-index
+    - require:
+      - virtualenv: devpi_virtualenv
     
 
 devpi_supervisor_config:
@@ -32,6 +38,8 @@ devpi_supervisor_config:
     - name: /etc/supervisor/conf.d/devpi.conf
     - source: salt://devpi/supervisor.conf
     - template: mako
+    - require:
+        - cmd: devpi_create_index
     - require_in:
         - service: supervisor
     - watch_in:
