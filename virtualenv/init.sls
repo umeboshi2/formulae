@@ -16,7 +16,7 @@ system_virtualenv_path:
     - user: {{ pget('virtualenv:system_virtualenv:user', 'root') }}
 {% endif %}      
 
-{% for venv in pget('virtualenv:system_environments', {} %}
+{% for venv in pget('virtualenv:system_environments', {}) %}
 system_virtualenv_{{ venv }}:
   virtualenv.managed:
     {% if 'name' not in venv %}
