@@ -1,0 +1,24 @@
+{% set supervisor = salt['grains.filter_by']({
+    'Debian': {
+        'server': 'supervisor',
+        'service': salt['grains.filter_by']({
+	    'lenny': 'supervisor',
+	    'squeeze': 'supervisor',
+	    'wheezy': 'supervisor',
+	    'jessie': 'supervisor',
+	    'default': 'supervisor',
+	}, grain='oscodename'),
+        'config': '/etc/supervisor/supervisord.conf',
+        'config_src': 'salt://supervisor/files/supervisord.conf',
+    },
+    'RedHat': {
+        'server': 'supervisor',
+        'service': 'supervisor',
+        'config': '/etc/supervisor/supervisord.conf',
+        'config_src': 'salt://supervisor/files/supervisord.conf',
+    },
+}, merge=salt['grains.filter_by']({
+    'Ubuntu': {
+        'service': 'supervisor',
+    },
+}, grain='os', merge=salt['pillar.get']('supervisor:lookup'))) %}

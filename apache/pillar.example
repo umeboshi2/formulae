@@ -1,16 +1,22 @@
 # ``apache`` formula configuration:
 apache:
-  server: apache2
-  service: apache2
 
-  vhostdir: /etc/apache2/sites-available
-  confdir: /etc/apache2/conf.d
-  confext: .conf
-  logdir: /var/log/apache2
-  wwwdir: /srv/apache2
+  # lookup section overrides ``map.jinja`` values
+  lookup:
+    server: apache2
+    service: apache2
 
-  # ``apache.mod_wsgi`` formula additional configuration:
-  mod_wsgi: mod_wsgi
+    vhostdir: /etc/apache2/sites-available
+    confdir: /etc/apache2/conf.d
+    confext: .conf
+    logdir: /var/log/apache2
+    wwwdir: /srv/apache2
+  
+    # apache version (generally '2.2' or '2.4')
+    version: '2.2'
+
+    # ``apache.mod_wsgi`` formula additional configuration:
+    mod_wsgi: mod_wsgi
 
   # ``apache.vhosts`` formula additional configuration:
   sites:
@@ -18,6 +24,7 @@ apache:
       template_file: salt://apache/vhosts/minimal.tmpl
 
     example.com: # must be unique; used as an ID declaration in Salt.
+      enabled: True
       template_file: salt://apache/vhosts/standard.tmpl # or redirect.tmpl or proxy.tmpl
 
       ####################### DEFAULT VALUES BELOW ############################
@@ -46,6 +53,7 @@ apache:
 
       SSLCertificateFile: /etc/ssl/mycert.pem # if ssl is desired
       SSLCertificateKeyFile: /etc/ssl/mycert.pem.key # if key for cert is needed or in an extra file
+      SSLCertificateChainFile: /etc/ssl/mycert.chain.pem # if you require a chain of server certificates file
 
       Directory:
         # "default" is a special case; Adds ``/path/to/www/dir/example.com``

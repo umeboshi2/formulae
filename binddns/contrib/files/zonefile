@@ -1,0 +1,39 @@
+$ORIGIN {{ name }}.
+$TTL {{ ttl }}
+@ IN SOA {{ soa }}.{{ name }}. {{ contact }} (
+  {{ serial }}  ; serial
+  {{ refresh }} ; refresh
+  {{ retry }}  ; retry
+  {{ expire }}  ; expire
+  {{ minimum }}  ; minimum
+)
+
+   IN NS {{ soa }}.{{ name }}.
+
+{% if records is defined -%}
+{%- for r in records -%}
+  {%- if r.comment is not defined -%}
+    {%- set rcomment = ' ' -%}
+  {%- else -%}
+    {%- set rcomment = ' ; ' ~ r.comment -%}
+  {%- endif -%}
+  {%- if r.ttl is not defined -%}
+    {%- set rttl = ' ' -%}
+  {%- else -%}
+    {%- set rttl = ' ' ~ r.ttl ~ ' ' -%}
+  {%- endif -%}
+{{ r.owner }} {{- rttl -}} IN {{ r.class|upper }} {{ r.data }} {{- rcomment }}
+{% endfor %}
+{% endif %}
+
+{% if includes is defined -%}
+{%- for i in includes -%}
+  {%- if i.domain is not defined -%}
+    {%- set idomain = '' -%}
+  {%- else -%}
+    {%- set idomain = i.domain -%}
+  {%- endif -%}
+$INCLUDE {{ i.path }} {{ idomain }};
+{% endfor %}
+{% endif %}
+

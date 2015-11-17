@@ -1,0 +1,10 @@
+<%
+pget = salt['pillar.get']
+config = pget('supervisor:programs:%s' % program)
+keys = [k for k in config if k != 'command']
+%>
+[program:${program}]
+command=${config['command']}
+%for key in keys:
+${key}=${config[key]}
+%endfor

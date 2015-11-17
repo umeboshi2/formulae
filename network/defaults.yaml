@@ -20,6 +20,7 @@ Debian:
       - pre_down_cmds
       - post_up_cmds
       - post_down_cmds
+      - noifupdown
       {#- bonding #}
       - master
       - mode
@@ -33,6 +34,7 @@ Debian:
       - ipv6ipaddr
       - ipv6netmask
       - ipv6gateway
+      - mtu 
     def_entries:
       - name: lo
         proto: loopback
@@ -83,6 +85,7 @@ RedHat:
       - pre_down_cmds
       - post_up_cmds
       - post_down_cmds
+      - noifupdown
       {#- bonding #}
       - master
       - mode
@@ -94,6 +97,7 @@ RedHat:
       - ipv6ipaddr
       - ipv6netmask
       - ipv6gateway
+      - mtu 
     def_entries: []
 #      - name: lo
 #        proto: none
@@ -126,7 +130,8 @@ RedHat:
   routes: {}
 FreeBSD:
   interfaces:
-  resolver: {}
+  resolver:
+    group: wheel
   hosts: {}
   routes: {}
 {% endload %}

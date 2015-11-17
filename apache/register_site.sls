@@ -1,3 +1,4 @@
+{% from "apache/map.jinja" import apache with context %}
 {% if grains['os_family']=="Debian" %}
 
 {% if 'apache' in pillar and 'register-site' in pillar['apache'] %} #BEGIN: ['apache']['register-site']
@@ -8,21 +9,21 @@
 {% if 'name' in pillar['apache']['register-site'][site] and 'state' in pillar['apache']['register-site'][site] %}
 
 {% if pillar['apache']['register-site'][site]['state'] == 'enabled' %}
-{% set a2modid = "a2ensite " ~ pillar['apache']['register-site'][site]['name'] %}
+{% set a2modid = "a2ensite " ~ pillar['apache']['register-site'][site]['name'] ~ apache.confext %}
 {% else %}
-{% set a2modid = "a2dissite " ~ pillar['apache']['register-site'][site]['name'] %}
+{% set a2modid = "a2dissite " ~ pillar['apache']['register-site'][site]['name'] ~ apache.confext %}
 {% endif %}
 {{ a2modid }}:
   cmd.run:
 {% if pillar['apache']['register-site'][site]['state'] == 'enabled' %}
-    - unless: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
+    - unless: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}{{ apache.confext }}
 {% else %}
-    - onlyif: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}
+    - onlyif: test -f /etc/apache2/sites-enabled/{{ pillar['apache']['register-site'][site]['name'] }}{{ apache.confext }}
 {% endif %}
     - order: 230
     - require:
       - pkg: apache
-      - file: /etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}
+      - file: /etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}{{ apache.confext }}
 
 {% endif %}
 ##########################################
@@ -31,7 +32,7 @@
 ##########################################
 {% if 'name' in pillar['apache']['register-site'][site] and 'path' in pillar['apache']['register-site'][site] %}
 
-/etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}:
+/etc/apache2/sites-available/{{ pillar['apache']['register-site'][site]['name'] }}{{ apache.confext }}:
   file.managed:
     - source: {{ pillar['apache']['register-site'][site]['path'] }}
     - order: 225
