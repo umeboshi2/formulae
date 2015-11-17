@@ -11,7 +11,7 @@ python-virtualenv-packages:
 system_virtualenv_path:
   file.directory:
     - name: {{ parent }}
-    - mode: {{ pget('virtualenv:system_virtualenv:dirmode', '040755') }}
+    - mode: {{ pget('virtualenv:system_virtualenv:dirmode', '0755') }}
     - group: {{ pget('virtualenv:system_virtualenv:group', 'root') }}
     - user: {{ pget('virtualenv:system_virtualenv:user', 'root') }}
 {% endif %}      
