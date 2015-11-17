@@ -29,6 +29,7 @@ devpi_virtualenv:
 devpi_create_index:
   cmd.run:
     - name: /var/lib/devpi/venv/bin/devpi-server --recreate-search-index
+    - user: devpi
     - require:
       - virtualenv: devpi_virtualenv
     
