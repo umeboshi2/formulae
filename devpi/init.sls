@@ -7,11 +7,6 @@ include:
   - virtualenv
   
 
-uwsgi-packages:
-  pkg.installed:
-    - pkgs:
-      - uwsgi
-
 devpi_user:
   user.present:
     - name: devpi
