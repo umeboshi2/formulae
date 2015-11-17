@@ -32,8 +32,6 @@ devpi_supervisor_config:
     - name: /etc/supervisor/conf.d/devpi.conf
     - source: salt://devpi/supervisor.conf
     - template: mako
-    - context:
-        webservice: {{ wservice }}
     - require_in:
         - service: supervisor
     - watch_in:
